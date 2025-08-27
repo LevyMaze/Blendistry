@@ -9,7 +9,7 @@ export default {
     siteName: "Blendistry",
     images: [
       {
-        url: "https://blendistry.vercel.app/banner.png", // must be absolute URL
+        url: "https://blendistry.vercel.app/banner.png", 
         width: 1200,
         height: 630,
         alt: "Blendistry Banner"
