@@ -1,22 +1,24 @@
 // next-seo.config.js
 export default {
-  title: "Blendistry",
-  description: "Your source for development guides, blogs, and resources.",
+  title: "Blendistry – Tech Blogs",
+  description:
+    "Learn web development, Next.js, databases, and more.",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://blendistry.vercel.app/",
-    siteName: "Blendistry",
+    url: "https://blendistry.vercel.app",
+    site_name: "Blendistry",
     images: [
       {
-        url: "https://blendistry.vercel.app/banner.png", 
+        url: "https://blendistry.vercel.app/banner.png", // 🔥 full URL
         width: 1200,
         height: 630,
-        alt: "Blendistry Banner"
-      }
-    ]
+        alt: "Blendistry Banner",
+      },
+    ],
   },
   twitter: {
-    cardType: "summary_large_image"
-  }
+    cardType: "summary_large_image",
+    site: "@yourtwitter",
+    creator: "@yourtwitter",
+  },
 };
