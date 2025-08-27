@@ -1,31 +1,22 @@
 // next-seo.config.js
-const SEO = {
-  title: "Blendistry – Tech Blogs",
-  description: "Tech blogs, tutorials, and insights about web development, databases, and more.",
-  canonical: "https://blendistry.vercel.app",
-
+export default {
+  title: "Blendistry",
+  description: "Your source for development guides, blogs, and resources.",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://blendistry.vercel.app",
-    site_name: "Blendistry",
-    title: "Blendistry – Tech Blogs",
-    description: "Learn web development, Next.js, databases, and more.",
+    url: "https://blendistry.vercel.app/",
+    siteName: "Blendistry",
     images: [
       {
-        url: "/banner.png", 
+        url: "https://blendistry.vercel.app/banner.png", // must be absolute URL
         width: 1200,
         height: 630,
-        alt: "Blendistry Banner",
-      },
-    ],
+        alt: "Blendistry Banner"
+      }
+    ]
   },
-
   twitter: {
-    handle: "@yourtwitter",
-    site: "@yourtwitter",
-    cardType: "summary_large_image", 
-  },
+    cardType: "summary_large_image"
+  }
 };
-
-export default SEO;
