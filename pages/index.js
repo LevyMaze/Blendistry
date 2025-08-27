@@ -41,9 +41,10 @@ export default function Home({ posts }) {
                 Blendistry
               </h2>
               <p className="mt-1 text-neutral-600 dark:text-neutral-300 max-w-xl">
-                A GitHub-styled, programmer-focused blog for fixes, bug
-                breakdowns, and practical tips across JS, TS, React and more.
-                Posts support Markdown and inline HTML for rich examples.
+                A GitHub-inspired blog built for developers who seek clarity in problem-solving. From debugging tricky errors to understanding backend logic,
+                 database optimization, and version control workflows, the posts provide structured breakdowns, real-world fixes, and practical tips.
+                  Each article supports Markdown and inline HTML to deliver theory-rich explanations alongside concise examples, making complex concepts
+                   easier to grasp and apply in everyday development.
               </p>
               <div className="mt-3 flex gap-3 items-center">
                 <Link

@@ -43,8 +43,10 @@ export default function Post({ frontmatter, content }) {
             />
           )}
 
+          {/* Blog content with inline Tailwind overrides for images */}
           <div
-            className="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none text-neutral-900 dark:text-neutral-100"
+            className="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none text-neutral-900 dark:text-neutral-100 blog-content
+              [&_img]:max-w-full [&_img]:h-auto [&_img]:max-h-[500px] [&_img]:mx-auto [&_img]:my-6 [&_img]:rounded-lg"
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
         </article>

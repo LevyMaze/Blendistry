@@ -9,7 +9,7 @@ export default {
     site_name: "Blendistry",
     images: [
       {
-        url: "https://blendistry.vercel.app/banner.png", // 🔥 full URL
+        url: "https://blendistry.vercel.app/banner.png", 
         width: 1200,
         height: 630,
         alt: "Blendistry Banner",
