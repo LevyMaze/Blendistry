@@ -33,7 +33,8 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```sql
-CREATE INDEX CONCURRENTLY idx_users_email ON users(email);
+CREATE INDEX CONCURRENTLY 
+idx_users_email ON users(email);
 ```
 
 ## Common pitfalls

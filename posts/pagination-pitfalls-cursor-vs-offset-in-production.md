@@ -33,7 +33,8 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```sql
--- use cursor-based pagination SELECT * FROM items WHERE id > cursor LIMIT 50;
+-- use cursor-based pagination
+-- SELECT * FROM items WHERE id > cursor LIMIT 50;
 ```
 
 ## Common pitfalls

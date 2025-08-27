@@ -33,7 +33,8 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```js
-process.on('SIGTERM', async () => {
+process.on('SIGTERM',
+ async () => {
   await server.close();
   process.exit(0);
 });

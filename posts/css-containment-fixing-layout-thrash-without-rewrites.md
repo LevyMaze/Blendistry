@@ -33,7 +33,13 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```css
-.card { contain: content; content-visibility: auto; contain-intrinsic-size: 300px; }
+.card { contain:
+content;
+content-visibility:
+auto;
+contain-intrinsic-size:
+300px;
+   }
 ```
 
 ## Common pitfalls

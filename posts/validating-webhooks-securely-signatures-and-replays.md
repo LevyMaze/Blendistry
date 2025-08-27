@@ -36,8 +36,9 @@ A concise model to reason about the issue and make decisions.
 // verify HMAC signature
 const crypto = require('crypto');
 function verify(req, secret) {
-  const sig = req.headers['x-hub-signature-256'];
-  const h = crypto.createHmac('sha256', secret).update(req.rawBody).digest('hex');
+const sig = req.headers['x-hub-signature-256'];
+const h = crypto.createHmac('sha256', secret)
+.update(req.rawBody).digest('hex');
   return sig === `sha256=${h}`;
 }
 ```

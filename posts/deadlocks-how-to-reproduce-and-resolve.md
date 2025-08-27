@@ -35,8 +35,10 @@ A concise model to reason about the issue and make decisions.
 ```sql
 BEGIN;
 -- access tables in consistent order
-UPDATE accounts SET balance = balance - 100 WHERE id = 1;
-UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+UPDATE accounts SET balance
+ = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance =
+ balance + 100 WHERE id = 2;
 COMMIT;
 ```
 

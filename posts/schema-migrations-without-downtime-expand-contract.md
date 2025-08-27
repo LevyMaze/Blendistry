@@ -33,7 +33,10 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```sql
--- add column with default in two steps: 1) add nullable column 2) backfill 3) set not null
+-- add column with default in two steps:
+-- 1) add nullable column
+-- 2) backfill
+-- 3) set not null
 ```
 
 ## Common pitfalls

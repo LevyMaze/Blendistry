@@ -33,7 +33,8 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```jsx
-useEffect(() => { /* browser-only code */ }, []);
+useEffect(() =>
+ { /* browser-only code */ }, []);
 ```
 
 ## Common pitfalls

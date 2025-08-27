@@ -33,7 +33,8 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```bash
-git bisect start -- bad_tag -- good_tag
+git bisect start
+ -- bad_tag -- good_tag
 # run tests and mark good/bad
 git bisect reset
 ```

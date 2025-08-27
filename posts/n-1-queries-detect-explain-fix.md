@@ -33,7 +33,10 @@ A concise model to reason about the issue and make decisions.
 ## Small example
 
 ```sql
-SELECT users.*, posts.count FROM users JOIN (SELECT user_id, COUNT(*) AS count FROM posts GROUP BY user_id) posts ON posts.user_id = users.id;
+SELECT users.*, posts.count
+ FROM users JOIN (SELECT user_id, COUNT(*)
+  AS count FROM posts GROUP BY user_id)
+   posts ON posts.user_id = users.id;
 ```
 
 ## Common pitfalls
