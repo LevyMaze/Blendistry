@@ -1,0 +1,47 @@
+export default function Privacy() {
+  return (
+    <div className="max-w-3xl mx-auto px-6 py-12 text-neutral-900 dark:text-neutral-100">
+      <h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
+
+      <p className="mb-4">
+        Your privacy is important to us. Please note the following:
+      </p>
+
+      <ul className="list-disc list-inside space-y-2 mb-4">
+        <li>
+          Blendistry does not collect or store personal data from users.
+        </li>
+        <li>
+          Comments are handled by <strong>Giscus</strong>, which uses GitHub
+          login. We do not receive or store your GitHub credentials.
+        </li>
+        <li>
+          Any analytics used on this site are anonymous and do not track
+          individual users.
+        </li>
+        <li>
+          We may use cookies or local storage only for essential site
+          functionality, such as theme preferences.
+        </li>
+        <li>
+          We do not sell, trade, or share personal information with third parties.
+        </li>
+        <li>
+          External links on Blendistry may collect data separately. Please review
+          their privacy policies.
+        </li>
+        <li>
+          You may request the removal of any personal data stored by contacting us
+          via the contact information on the site.
+        </li>
+      </ul>
+
+      <p className="mb-2">
+        By using Blendistry, you acknowledge and agree to this Privacy Policy.
+      </p>
+      <p>
+        For questions regarding privacy practices, please reach out through the provided mail.
+      </p>
+    </div>
+  );
+}

@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* Base Body */
+body {
+  background-color: #ffffff !important; 
+  color: #24292f !important; 
+}
+
+html.dark body {
+  background-color: #0d1117 !important; 
+  color: #c9d1d9 !important; 
+}
+
+/* Links */
+a {
+  color: #0969da !important; 
+}
+html.dark a {
+  color: #58a6ff !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6, .heading {
+  color: #24292f !important;
+}
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6, html.dark .heading {
+  color: #c9d1d9 !important;
+}
+
+/* Paragraphs */
+p {
+  color: #24292f !important;
+}
+html.dark p {
+  color: #c9d1d9 !important;
+}
+
+/* Blog cards */
+div[class*="bg-neutral-"] {
+  background-color: #f6f8fa !important; 
+  border-radius: 12px;
+  border: 1px solid #d0d7de;
+}
+html.dark div div[class*="bg-neutral-"] {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d;
+}
+
+/* Prose content */
+.prose, .prose p, .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: #24292f !important;
+}
+html.dark .prose, html.dark .prose p, html.dark .prose h1, html.dark .prose h2,
+html.dark .prose h3, html.dark .prose h4, html.dark .prose h5, html.dark .prose h6 {
+  color: #c9d1d9 !important;
+}
+
+/* Navbar & Footer */
+nav, footer {
+  background-color: #f6f8fa !important;
+  color: #24292f !important;
+  border: 1px solid #d0d7de;
+}
+html.dark nav, html.dark footer {
+  background-color: #161b22 !important;
+  color: #c9d1d9 !important;
+  border: 1px solid #30363d;
+}
+
+/* Buttons & Inputs */
+button, input, select, textarea {
+  color: #24292f !important;
+  background-color: #f6f8fa !important;
+  border: 1px solid #d0d7de;
+}
+html.dark button, html.dark input, html.dark select, html.dark textarea {
+  color: #c9d1d9 !important;
+  background-color: #161b22 !important;
+  border: 1px solid #30363d;
+}
+
+/* Blog page container */
+.blog-article, .blog-article * {
+  color: #24292f !important;
+  background-color: #ffffff !important;
+  border: 1px solid #d0d7de;
+}
+
+html.dark .blog-article, html.dark .blog-article * {
+  color: #c9d1d9 !important;
+  background-color: #0d1117 !important;
+  border: 1px solid #30363d;
+}
+
+/* Giscus comments container */
+.giscus-frame {
+  background-color: #ffffff !important;
+}
+html.dark .giscus-frame {
+  background-color: #0d1117 !important;
+}
+
+/* Root backgrounds */
+html, body, #__next {
+  background-color: #ffffff !important;
+  color: #24292f !important;
+}
+
+.dark html, .dark body, .dark #__next {
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+}
+
+/* Custom dark shadow (tuned for GitHub style) */
+.shadow-dark {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15), 0 8px 24px rgba(0,0,0,0.15);
+}
+.cards{
+  padding: none !important;
+  margin: none !important;
+}
+/* Lists */
+ul, ol {
+  color: #24292f !important;
+  padding-left: 1.5rem !important;
+}
+html.dark ul, html.dark ol {
+  color: #c9d1d9 !important;
+}
+
+ul li::marker, ol li::marker {
+  color: #57606a !important; /* muted grey, visible on light */
+}
+html.dark ul li::marker, html.dark ol li::marker {
+  color: #8b949e !important; /* muted grey, visible on dark */
+}
+
+/* Buttons */
+button {
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Light theme buttons */
+button {
+  background-color: #f6f8fa !important; 
+  color: #24292f !important;
+  border: 1px solid #d0d7de;
+}
+
+button:hover {
+  background-color: #f3f4f6 !important;
+  border-color: #b6bec8;
+}
+
+/* Dark theme buttons */
+html.dark button {
+  background-color: #21262d !important; 
+  color: #c9d1d9 !important;
+  border: 1px solid #30363d;
+}
+
+html.dark button:hover {
+  background-color: #30363d !important;
+  border-color: #484f58;
+}
+#__next_dev_overlay {
+  display: none !important;
+}
