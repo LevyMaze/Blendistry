@@ -4,6 +4,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 
 // Optional: Custom components inside MDX
 const components = {
@@ -19,14 +20,31 @@ const components = {
 
 export default function Post({ frontmatter, mdxSource }) {
   const { theme } = useTheme();
+  const router = useRouter();
 
   return (
     <div className="min-h-screen px-0 sm:px-6 lg:px-8 py-6">
-      <div className="w-full sm:max-w-3xl sm:mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-xl shadow-lg">
+      <div className="w-full sm:max-w-3xl sm:mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-xl shadow-lg ">
         <article className="p-3 sm:p-6 lg:p-8">
+{/* Back button */}
+<p
+  onClick={() => router.back()}
+  className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max 
+             text-blue-600 dark:text-blue-400 
+             
+             hover: 
+             transition transform duration-200 ease-in-out"
+>
+  <span className="text-xl font-bold transform transition-transform duration-200 ease-in-out
+                   group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500">
+    🠔
+  </span>
+</p>
+
+
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">
             {frontmatter.title}
-          </h1>
+          </h1> 
 
           <div className="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
             <span>Date: {frontmatter.date}</span> &nbsp;|&nbsp;
