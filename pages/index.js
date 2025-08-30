@@ -4,6 +4,26 @@ import { getAllPosts } from "../lib/posts";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 
+// 🔹 Category-based color helper
+function getCategoryClasses(category) {
+  switch ((category || "").toLowerCase()) {
+    case "frontend":
+      return "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200";
+    case "backend":
+      return "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200";
+    case "database":
+      return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200";
+    case "git & github":
+    case "git-github":
+      return "bg-black text-white dark:bg-gray-800 dark:text-gray-100";
+    case "debugging":
+      return "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200";
+    case "general":
+    default:
+      return "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200";
+  }
+}
+
 export default function Home({ posts }) {
   const [search, setSearch] = useState("");
   const normalizedSearch = search.trim().toLowerCase();
@@ -42,9 +62,9 @@ export default function Home({ posts }) {
               </h2>
               <p className="mt-1 text-neutral-600 dark:text-neutral-300 max-w-xl">
                 A GitHub-inspired blog built for developers who seek clarity in problem-solving. From debugging tricky errors to understanding backend logic,
-                 database optimization, and version control workflows, the posts provide structured breakdowns, real-world fixes, and practical tips.
-                  Each article supports Markdown and inline HTML to deliver theory-rich explanations alongside concise examples, making complex concepts
-                   easier to grasp and apply in everyday development.
+                database optimization, and version control workflows, the posts provide structured breakdowns, real-world fixes, and practical tips.
+                Each article supports Markdown and inline HTML to deliver theory-rich explanations alongside concise examples, making complex concepts
+                easier to grasp and apply in everyday development.
               </p>
               <div className="mt-3 flex gap-3 items-center">
                 <Link
@@ -73,18 +93,17 @@ export default function Home({ posts }) {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center sm:text-left mb-0 text-neutral-900 dark:text-neutral-100">
           Latest Posts
         </h1>
-        <div className="w-full sm:w-64">
-          <label htmlFor="search" className="sr-only">
-            Search posts
-          </label>
+        {/* 🔹 Floating label search */}
+        <div className="floating-label w-full sm:w-64">
           <input
             id="search"
             type="text"
-            placeholder="Search (e.g. TS, React)..."
+            placeholder=" "
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          <label htmlFor="search">Search posts</label>
         </div>
       </div>
 
@@ -132,7 +151,11 @@ export default function Home({ posts }) {
                     <Link
                       href={`/category/${post.frontmatter.category.toLowerCase()}`}
                     >
-                      <span className="inline-block mt-2 text-xs px-2 py-1 rounded-md bg-blue-100 dark:bg-blue-700 text-blue-700 dark:text-blue-200 cursor-pointer">
+                      <span
+                        className={`inline-block mt-2 text-xs px-2 py-1 rounded-md cursor-pointer ${getCategoryClasses(
+                          post.frontmatter.category
+                        )}`}
+                      >
                         {post.frontmatter.category}
                       </span>
                     </Link>

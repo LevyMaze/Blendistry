@@ -169,4 +169,75 @@ html.dark button:hover {
 }
 #__next_dev_overlay {
   display: none !important;
+}pre {
+  overflow-x: auto;
+  white-space: pre;        
+}
+
+code {
+  word-break: break-word;  
+}
+
+/* Markdown / MDX content theming */
+article {
+  line-height: 1.7;
+}
+
+article h1,
+article h2,
+article h3 {
+  color: #111;
+}
+
+article p {
+  color: #333;
+}
+
+article pre,
+article code {
+  background: #e9e2e2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: monospace;
+  overflow-x: auto;
+}
+
+/* Dark mode overrides */
+html.dark article h1,
+html.dark article h2,
+html.dark article h3,
+html.dark article p {
+  color: #f8f8f8;
+}
+
+html.dark article pre,
+html.dark article code {
+  background: #2d2d2d;
+  color: #f4f4f4;
+}
+/* Floating labels for inputs */
+.floating-label {
+  position: relative;
+}
+
+.floating-label input {
+  padding: 1rem 0.75rem 0.25rem 0.75rem;
+}
+
+.floating-label label {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.75rem;
+  font-size: 0.9rem;
+  color: #6b7280; /* neutral-500 */
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+  top: 0.3rem;
+  left: 0.7rem;
+  font-size: 0.75rem;
+  color: #2563eb; /* blue-600 */
 }

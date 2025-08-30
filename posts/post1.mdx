@@ -1,0 +1,77 @@
+---
+title: "Accessibility Traps in Modern Frontend Development"
+date: "2025-08-30"
+author: "Blendistry"
+image: "https://framerusercontent.com/images/N0xefN2fE6CCF4G2YhAg5exTHX8.png"
+excerpt: "Common accessibility traps in modern frontend frameworks and how to fix them for inclusive web experiences."
+category: "Frontend"
+---
+
+# Accessibility Traps in Modern Frontend Development
+
+Accessibility isn’t just about adding `alt` text. Frontend frameworks like React, Vue, and Angular give developers speed, but also tempt them into practices that break accessibility without realizing it. Let’s dive into the hidden traps developers hit and how to fix them.
+
+## Why This Matters
+
+Websites excluding users with screen readers, mobility impairments, or low vision aren’t just a moral failure—they’re legal liabilities. But more importantly, accessible sites load faster, rank better on SEO, and have higher engagement.
+
+## Trap #1: Div Soup
+
+Developers love wrapping everything in `<div>`. But divs are meaningless to assistive tech.  
+
+Instead:
+
+```jsx
+// Bad
+<div onClick={handleClick}>Submit</div>
+
+
+// Good
+<button onClick={handleClick}>Submit</button> 
+
+// Replacing a <div> with semantic elements like <button> instantly improves accessibility and keyboard navigation.
+```
+
+## Trap #2: Ignoring Focus States
+Frameworks often strip default focus outlines in CSS to look “clean,” but this makes navigation impossible for keyboard users.
+
+```
+/* Bad */
+:focus {
+  outline: none;
+}
+
+/* Good */
+:focus {
+  outline: 2px solid #4be1ec;
+}
+```
+
+## Trap #3: Infinite Scroll Done Wrong.
+Without ARIA roles or landmarks, infinite scroll is unusable with screen readers. Always announce dynamically added content:
+
+``` js
+<div role="status" aria-live="polite">
+  {newItems.map(item => <p key={item.id}>{item.name}</p>)}
+</div>
+```
+## Quick Checklist
+✅ Use semantic HTML first.
+
+✅ Don’t disable outlines without adding custom ones.
+
+✅ Add ARIA attributes where content is dynamic.
+
+✅ Test with keyboard-only navigation.
+
+## Common Pitfalls
+Thinking accessibility = screen readers only.
+
+Forgetting color contrast.
+
+Over-engineering ARIA roles where semantic HTML already works.
+
+## What To Do Next
+Audit your app using Lighthouse or axe-core. Fix one category at a time—color contrast, keyboard navigation, ARIA landmarks.
+
+Accessibility is never a one-time task; it’s continuous. But fixing these traps early avoids lawsuits, user frustration, and costly rewrites.

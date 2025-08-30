@@ -1,31 +1,29 @@
 // pages/posts/[slug].js
-import { getPostBySlug } from "../../lib/posts";
-import { marked } from "marked";
-import { useEffect, useState } from "react";
+import { getPostBySlug, getAllPosts } from "../../lib/posts";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
-import Loader from "../../components/Loader";
 
-export default function Post({ frontmatter, content }) {
+// Optional: Custom components inside MDX
+const components = {
+  h1: (props) => <h1 className="text-3xl font-bold mb-4" {...props} />,
+  h2: (props) => <h2 className="text-2xl font-semibold mt-6 mb-2" {...props} />,
+  code: (props) => (
+    <code
+      className="bg-neutral-200 dark:bg-neutral-700 px-1 py-0.5 rounded"
+      {...props}
+    />
+  ),
+};
+
+export default function Post({ frontmatter, mdxSource }) {
   const { theme } = useTheme();
-  const [htmlContent, setHtmlContent] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setHtmlContent(marked(content));
-      setLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [content]);
-
-  if (loading) return <Loader />;
 
   return (
-    <div className="min-h-screen px-0 sm:px-6 lg:px-8 py-6 transition-colors duration-300">
-      <div className="w-full sm:max-w-3xl sm:mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-none sm:rounded-xl shadow-dark">
-        <article className="p-3 sm:p-6 lg:p-8 transition-colors duration-300">
+    <div className="min-h-screen px-0 sm:px-6 lg:px-8 py-6">
+      <div className="w-full sm:max-w-3xl sm:mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-xl shadow-lg">
+        <article className="p-3 sm:p-6 lg:p-8">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">
             {frontmatter.title}
           </h1>
@@ -39,16 +37,13 @@ export default function Post({ frontmatter, content }) {
             <img
               src={frontmatter.image}
               alt={frontmatter.title}
-              className="w-full rounded-none sm:rounded-lg mb-6 object-cover"
+              className="w-full rounded-lg mb-6 object-cover"
             />
           )}
 
-          {/* Blog content with inline Tailwind overrides for images */}
-          <div
-            className="prose prose-sm sm:prose lg:prose-lg dark:prose-invert max-w-none text-neutral-900 dark:text-neutral-100 blog-content
-              [&_img]:max-w-full [&_img]:h-auto [&_img]:max-h-[500px] [&_img]:mx-auto [&_img]:my-6 [&_img]:rounded-lg"
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
-          />
+          <div className="prose dark:prose-invert max-w-none">
+            <MDXRemote {...mdxSource} components={components} />
+          </div>
         </article>
       </div>
 
@@ -73,10 +68,7 @@ export default function Post({ frontmatter, content }) {
 }
 
 export async function getStaticPaths() {
-  // import getAllPosts server-side only
-  const { getAllPosts } = await import("../../lib/posts");
   const posts = getAllPosts();
-
   return {
     paths: posts.map((post) => ({ params: { slug: post.slug } })),
     fallback: false,
@@ -85,21 +77,15 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
-  const { frontmatter, content } = getPostBySlug(slug);
+  const post = getPostBySlug(slug);
 
-  // replace undefined values to avoid serialization issues
-  const safeFrontmatter = {
-    title: frontmatter.title || "Untitled",
-    date: frontmatter.date || null,
-    author: frontmatter.author || null,
-    image: frontmatter.image || null,
-    category: frontmatter.category || "General",
-  };
+  // Serialize MDX for hydration
+  const mdxSource = await serialize(post.content);
 
   return {
     props: {
-      frontmatter: safeFrontmatter,
-      content,
+      frontmatter: post.frontmatter,
+      mdxSource,
     },
   };
 }

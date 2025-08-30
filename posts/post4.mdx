@@ -1,0 +1,49 @@
+---
+title: "GitHub Actions Pitfalls That Cost Devs Hours"
+date: "2025-08-30"
+author: "Blendistry"
+image: "https://cdn.mos.cms.futurecdn.net/W5LnBksnN2E3PTCdgDF9g3.png"
+excerpt: "GitHub Actions automates CI/CD—but misconfigurations lead to wasted hours. Let’s cover common pitfalls."
+category: "Git & GitHub"
+---
+
+# GitHub Actions Pitfalls That Cost Devs Hours
+
+GitHub Actions is powerful, but fragile configs often waste dev hours.  
+
+## Common Pitfalls
+
+### 1. Forgetting Workflow Triggers
+
+A missing `on: push` or branch filter means workflows never run.
+
+```yaml
+on:
+  push:
+    branches: [ main ]
+```
+2. Caching Gone Wrong
+Node.js cache misconfigs mean re-installing deps every build.
+
+```yaml
+- uses: actions/cache@v3
+  with:
+    path: ~/.npm
+    key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+```
+3. Secret Leaks
+Echoing secrets in logs is a security disaster.
+
+```
+# Bad
+run: echo ${{ secrets.API_KEY }}
+```
+## Quick Checklist
+✅ Define triggers correctly.
+
+✅ Cache dependencies.
+
+✅ Never log secrets.
+
+## What To Do Next
+`Audit` your workflows. Optimize caches and verify triggers to save CI minutes and headaches.

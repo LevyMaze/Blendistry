@@ -11,20 +11,38 @@ export default function Blogs({ posts }) {
     return content.includes(searchQuery.toLowerCase());
   });
 
+  // Category color mapping (matching your categories exactly)
+  const categoryColors = {
+    "Frontend": "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200",
+    "Backend": "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
+    "Database": "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200",
+    "Git & Github": "bg-black text-white dark:bg-gray-800 dark:text-gray-100",
+    "Debugging": "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200",
+    "General": "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+  };
+
   return (
     <div className="w-full sm:max-w-5xl sm:mx-auto px-0 sm:px-6 lg:px-8">
       <h4 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 text-neutral-900 dark:text-neutral-100">
         All Blogs
       </h4>
 
-      <div className="mb-8">
+      {/* Floating label search bar */}
+      <div className="mb-8 relative">
         <input
           type="text"
-          placeholder="Search posts (e.g. React, TS, Bug)..."
+          id="search"
+          placeholder=" "
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="peer w-full p-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <label
+          htmlFor="search"
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500 px-1"
+        >
+          Search posts
+        </label>
       </div>
 
       <div className="flex flex-col gap-5 sm:gap-7">
@@ -68,7 +86,12 @@ export default function Blogs({ posts }) {
                     {/* Category Tag */}
                     {post.frontmatter?.category && (
                       <Link href={`/category/${post.frontmatter.categorySlug}`}>
-                        <span className="inline-block text-xs px-2 py-1 rounded-md bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 cursor-pointer">
+                        <span
+                          className={`inline-block text-xs px-2 py-1 rounded-md cursor-pointer ${
+                            categoryColors[post.frontmatter.category] ||
+                            "bg-black text-white dark:bg-gray-800 dark:text-gray-100"
+                          }`}
+                        >
                           {post.frontmatter.category}
                         </span>
                       </Link>

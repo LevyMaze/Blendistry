@@ -1,0 +1,42 @@
+---
+title: "The N+1 Query Problem Every Developer Hits"
+date: "2025-08-30"
+author: "Blendistry"
+image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjdM1m7UA7VstFywNubKY67vHtkxq0GGFuaA&s"
+excerpt: "N+1 queries kill database performance. Let’s break down why it happens and how to fix it."
+category: "Database"
+---
+
+# The N+1 Query Problem Every Developer Hits
+
+The **N+1 query problem** is one of the most common performance bottlenecks in databases. It happens when an app runs one query for a list, then runs another query for each item.
+
+## Example
+
+```js
+// Fetch users, then fetch posts per user (bad)
+const users = await db.users.findMany();
+for (const user of users) {
+  user.posts = await db.posts.findMany({ where: { userId: user.id } });
+}
+```
+- If you have 100 users, that’s 101 queries. Disaster.
+
+- Fix: Use Joins or Includes
+```js
+// Prisma ORM example
+const users = await db.user.findMany({
+  include: { posts: true }
+});
+```
+This reduces `101 queries` → `1 query`.
+
+## Quick Checklist
+✅ Look for loops making DB queries.
+
+✅ Use joins/includes to batch queries.
+
+✅ Profile DB calls in logs.
+
+## What To Do Next
+Run a profiler in staging. If queries explode with more data, you’ve hit N+1. Fix it early.

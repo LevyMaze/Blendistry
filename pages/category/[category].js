@@ -15,6 +15,20 @@ export default function CategoryPage({ categoryName = "", posts = [] }) {
     );
   }
 
+  // Define background color classes for each category
+  const categoryColors = {
+    Frontend: "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200",
+    Backend: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
+    Database:
+      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200",
+    "Git & Github":
+      "bg-black text-white dark:bg-neutral-900 dark:text-neutral-100",
+    Debugging:
+      "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200",
+    General:
+      "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+  };
+
   return (
     <div className="w-full sm:max-w-5xl sm:mx-auto px-0 sm:px-6 lg:px-8">
       <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 dark:text-neutral-100 py-10">
@@ -71,7 +85,12 @@ export default function CategoryPage({ categoryName = "", posts = [] }) {
                     {/* Category Tag */}
                     {post.frontmatter?.category && (
                       <Link href={`/category/${post.frontmatter.categorySlug}`}>
-                        <span className="inline-block text-xs px-2 py-1 rounded-md bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 cursor-pointer">
+                        <span
+                          className={`inline-block text-xs px-2 py-1 rounded-md cursor-pointer ${
+                            categoryColors[post.frontmatter.category] ||
+                            "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"
+                          }`}
+                        >
                           {post.frontmatter.category}
                         </span>
                       </Link>

@@ -1,0 +1,42 @@
+---
+title: "Database Indexing Traps That Slow You Down"
+date: "2025-08-30"
+author: "Blendistry"
+image: "https://static.tildacdn.one/tild6262-6661-4034-b164-383063636462/What_is_SQL_Database.png"
+excerpt: "Indexes speed up queries—but misused, they kill performance. Let’s explore indexing traps."
+category: "Database"
+---
+
+# Database Indexing Traps That Slow You Down
+
+Indexes are lifesavers for query performance. But many devs fall into indexing traps that do the opposite.
+
+## Trap #1: Too Many `Indexes`
+
+Every index speeds reads but slows writes. Adding indexes blindly can choke inserts.
+
+## Trap #2: Wrong Column Order
+
+Multi-column indexes must match the query order.
+
+```sql
+-- Index on (last_name, first_name)
+-- Query must filter last_name first
+SELECT * FROM users WHERE last_name = 'Doe' AND first_name = 'John';
+```
+
+Trap #3: Forgetting Covering Indexes
+Queries fetching small sets of columns can benefit from covering indexes.
+
+```sql
+CREATE INDEX idx_user_email ON users(email);
+```
+## Quick Checklist
+✅ Index columns used in WHERE and JOIN.
+
+✅ Avoid indexing every column.
+
+✅ Monitor slow queries regularly.
+
+## What To Do Next
+Run `EXPLAIN` on slow queries. Index based on evidence, not guesses.
