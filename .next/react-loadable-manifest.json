@@ -1,4 +1,10 @@
 {
+  "node_modules\\@giscus\\react\\dist\\index.js -> ./giscus-Ci9LqPcC.js": {
+    "id": "node_modules\\@giscus\\react\\dist\\index.js -> ./giscus-Ci9LqPcC.js",
+    "files": [
+      "static/chunks/_pages-dir-browser_node_modules_giscus_react_dist_giscus-Ci9LqPcC_js.js"
+    ]
+  },
   "node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
     "id": "node_modules\\next\\dist\\client\\index.js -> ../pages/_app",
     "files": [
