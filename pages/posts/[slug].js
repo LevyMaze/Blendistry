@@ -37,7 +37,7 @@ export default function Post({ frontmatter, mdxSource }) {
             <img
               src={frontmatter.image}
               alt={frontmatter.title}
-              className="w-full rounded-lg mb-6 object-cover"
+              className="rounded-lg mb-6 object-cover"
             />
           )}
 
