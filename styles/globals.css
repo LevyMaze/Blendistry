@@ -241,3 +241,7 @@ html.dark article code {
   font-size: 0.75rem;
   color: #2563eb; 
 }
+.heading{
+  font-weight: 600 !important;
+  color: #0969da !important;
+}

@@ -57,14 +57,12 @@ export default function Home({ posts }) {
         <div className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-none sm:rounded-xl border border-neutral-200 dark:border-neutral-700 p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-neutral-100">
+              <heading className="text-2xl sm:text-3xl font-bold text-blue-500 dark:text-blue-500 heading">
                 Blendistry
-              </h2>
+              </heading>
               <p className="mt-1 text-neutral-600 dark:text-neutral-300 max-w-xl">
-                A GitHub-inspired blog built for developers who seek clarity in problem-solving. From debugging tricky errors to understanding backend logic,
-                database optimization, and version control workflows, the posts provide structured breakdowns, real-world fixes, and practical tips.
-                Each article supports Markdown and inline HTML to deliver theory-rich explanations alongside concise examples, making complex concepts
-                easier to grasp and apply in everyday development.
+                Blendistry is a knowledge platform dedicated to clear, practical, and disciplined guidance in web development.
+                 From frontend to backend, databases to debugging, we deliver precise resources that cut through noise and accelerate developer growth.
               </p>
               <div className="mt-3 flex gap-3 items-center">
                 <Link

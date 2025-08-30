@@ -41,7 +41,7 @@ export default function Navbar() {
     <nav className="bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50 shadow transition-colors duration-300 w-full">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-semibold text-lg">
+        <Link href="/" className="flex items-center gap-2 font-semibold text-lg text-blue-500">
           {mounted && (
             <img
               src={theme === "dark" ? logoDark.src : logoLight.src}
@@ -51,7 +51,7 @@ export default function Navbar() {
               className="rounded-full"
             />
           )}
-          BLENDISTRY
+           <p class="font-bold text-lg text-blue-500">Blendistry</p>
         </Link>
 
         {/* Desktop Menu */}

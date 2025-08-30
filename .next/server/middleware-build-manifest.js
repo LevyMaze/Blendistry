@@ -25,6 +25,16 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/blogs": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/blogs.js"
+    ],
+    "/category/[category]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/category/[category].js"
+    ],
     "/posts/[slug]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
