@@ -12,6 +12,7 @@ export default function Document() {
 
         {/* Optional: theme color */}
         <meta name="theme-color" content="#000000" />
+        <meta name="google-site-verification" content="QF9j4CbqXR08yIOHz0e4uIfPUDscChqUjsQtB6IEo_c"/>
       </Head>
       <body>
         <Main />
