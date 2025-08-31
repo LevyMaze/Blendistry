@@ -9,8 +9,8 @@ export default {
     images: [
       {
         url: "https://blendistry.vercel.app/logo-dark.png", 
-        width: 512, 
-        height: 512,
+        width: 32, 
+        height: 32,
         alt: "Blendistry Logo",
       },
     ],
