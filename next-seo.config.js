@@ -1,7 +1,7 @@
 export default {
-  title: "Blendistry – Tech Blogs",
+  title: "Blendistry - Tech Blogs",
   description:
-    "A GitHub-inspired blog built for developers who seek clarity in problem-solving. Explore debugging, frontend, backend, databases, and practical web development tips.",
+    "Blendistry is a knowledge platform dedicated to clear, practical, and disciplined guidance in web development. From frontend to backend, databases to debugging, we deliver precise resources that cut through noise and accelerate developer growth.",
   openGraph: {
     type: "website",
     url: "https://blendistry.vercel.app",
