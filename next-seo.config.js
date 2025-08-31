@@ -8,16 +8,10 @@ export default {
     site_name: "Blendistry",
     images: [
       {
-        url: "https://blendistry.vercel.app/banner.png", // Social sharing
+        url: "https://blendistry.vercel.app/banner.png", 
         width: 810,
         height: 360,
         alt: "Blendistry Banner",
-      },
-      {
-        url: "https://blendistry.vercel.app/logo-dark.png", // SRP / Google rich snippet
-        width: 512,
-        height: 512,
-        alt: "Blendistry Logo",
       },
     ],
   },
