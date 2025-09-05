@@ -34,7 +34,7 @@ Node.js cache misconfigs mean re-installing deps every build.
 3. Secret Leaks
 Echoing secrets in logs is a security disaster.
 
-```
+```yaml
 # Bad
 run: echo ${{ secrets.API_KEY }}
 ```

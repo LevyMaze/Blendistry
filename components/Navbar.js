@@ -32,7 +32,7 @@ export default function Navbar() {
     { name: "Frontend", slug: "frontend" },
     { name: "Backend", slug: "backend" },
     { name: "Database", slug: "database" },
-    { name: "Git & Github", slug: "git-github" },
+    { name: "GitGithub", slug: "git-github" },
     { name: "Debugging", slug: "debugging" },
     { name: "General", slug: "general" },
   ];
@@ -87,7 +87,7 @@ export default function Navbar() {
           {/* Theme Toggle */}
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className="px-3 py-1 rounded-md bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-50 transition-colors duration-300"
+            className="px-3 py-1 rounded-md bg-neutral-200 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-50 transition-colors duration-300 hover:underline"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="toggle theme"
           >

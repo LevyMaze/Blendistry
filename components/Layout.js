@@ -54,13 +54,13 @@ export default function Layout({ children, categories }) {
           <div className="flex gap-6 text-sm">
             <Link
               href="/tos"
-              className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50 transition hover:underline "
+              className="hover:underline "
             >
               Terms of Service
             </Link>
             <Link
               href="/privacypolicy"
-              className="text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-50 transition hover:underline "
+              className="hover:underline "
             >
               Privacy Policy
             </Link>

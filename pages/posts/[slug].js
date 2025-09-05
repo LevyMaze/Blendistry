@@ -1,21 +1,23 @@
-// pages/posts/[slug].js
 import { getPostBySlug, getAllPosts } from "../../lib/posts";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
-// Optional: Custom components inside MDX
+// ✅ Import CodeBlock instead of duplicating
+import CodeBlock from "../../components/CodeBlock";
+
 const components = {
   h1: (props) => <h1 className="text-3xl font-bold mb-4" {...props} />,
   h2: (props) => <h2 className="text-2xl font-semibold mt-6 mb-2" {...props} />,
-  code: (props) => (
-    <code
-      className="bg-neutral-200 dark:bg-neutral-700 px-1 py-0.5 rounded"
-      {...props}
-    />
-  ),
+  code: (props) =>
+    props.className ? (
+      <CodeBlock {...props} />
+    ) : (
+      <code className="bg-neutral-200 dark:bg-neutral-700 px-1 py-0.5 rounded" {...props} />
+    ),
 };
 
 export default function Post({ frontmatter, mdxSource }) {
@@ -24,47 +26,55 @@ export default function Post({ frontmatter, mdxSource }) {
 
   return (
     <div className="min-h-screen px-0 sm:px-6 lg:px-8 py-6">
-      <div className="w-full sm:max-w-3xl sm:mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-xl shadow-lg ">
+      <div className="w-full sm:max-w-3xl sm:mx-auto bg-neutral-100 dark:bg-neutral-800 rounded-xl shadow-lg">
         <article className="p-3 sm:p-6 lg:p-8">
-{/* Back button */}
-<p
-  onClick={() => router.back()}
-  className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max 
-             text-blue-600 dark:text-blue-400 
-             
-             hover: 
-             transition transform duration-200 ease-in-out"
->
-  <span className="text-xl font-bold transform transition-transform duration-200 ease-in-out
-                   group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500">
-    🠔
-  </span>
-</p>
+          {/* Back button */}
+          <p
+            onClick={() => router.back()}
+            className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max 
+                       text-blue-600 dark:text-blue-400 
+                       transition transform duration-200 ease-in-out"
+          >
+            <span
+              className="text-xl font-bold transform transition-transform duration-200 ease-in-out
+                         group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500"
+            >
+              🠔
+            </span>
+          </p>
 
-
+          {/* Title */}
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-neutral-900 dark:text-neutral-50">
             {frontmatter.title}
-          </h1> 
+          </h1>
 
+          {/* Meta */}
           <div className="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
             <span>Date: {frontmatter.date}</span> &nbsp;|&nbsp;
             <span>Author: {frontmatter.author || "Unknown"}</span>
           </div>
 
+          {/* Featured image */}
           {frontmatter.image && (
-            <img
-              src={frontmatter.image}
-              alt={frontmatter.title}
-              className="rounded-lg mb-6 object-cover"
-            />
+            <div className="relative w-full h-64 sm:h-80 md:h-96 mb-6 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src={frontmatter.image}
+                alt={frontmatter.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           )}
 
+          {/* Content */}
           <div className="prose dark:prose-invert max-w-none">
             <MDXRemote {...mdxSource} components={components} />
           </div>
         </article>
       </div>
 
+      {/* Comments */}
       <div className="mt-10 w-full sm:max-w-3xl sm:mx-auto">
         <Giscus
           id="comments"
@@ -96,8 +106,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const post = getPostBySlug(slug);
-
-  // Serialize MDX for hydration
   const mdxSource = await serialize(post.content);
 
   return {

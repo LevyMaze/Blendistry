@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../Downloads/blendistry_updated_posts/posts"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Blendistry"
+	}
+}

@@ -17,16 +17,16 @@ export default function CategoryPage({ categoryName = "", posts = [] }) {
 
   // Define background color classes for each category
   const categoryColors = {
-    Frontend: "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200",
-    Backend: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
+    Frontend: "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200 hover:underline",
+    Backend: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 hover:underline",
     Database:
-      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200",
-    "Git & Github":
-      "bg-black text-white dark:bg-neutral-900 dark:text-neutral-100",
+      "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200 hover:underline",
+    GitGithub:
+      "bg-black text-white dark:bg-neutral-900 dark:text-neutral-100 underline hover:underline",
     Debugging:
-      "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200",
+      "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200 hover:underline",
     General:
-      "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+      "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200 hover:underline",
   };
 
   return (
@@ -67,7 +67,7 @@ export default function CategoryPage({ categoryName = "", posts = [] }) {
                     </div>
                   )}
                   <div className="p-4 sm:p-5 flex-1">
-                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 text-neutral-900 dark:text-neutral-100">
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 text-neutral-900 dark:text-neutral-100 hover:underline">
                       {post.frontmatter.title}
                     </h2>
                     <p className="text-neutral-600 dark:text-neutral-400 text-sm">

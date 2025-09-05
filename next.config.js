@@ -1,13 +1,16 @@
 // next.config.js
 const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/, // handle .mdx and .md
+  extension: /\.mdx?$/,
 });
 
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ["js", "jsx", 'ts', 'tsx', "md", "mdx"], // allow .mdx pages
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   devIndicators: {
     buildActivity: false,
+  },
+  images: {
+    unoptimized: true, 
   },
 };
 

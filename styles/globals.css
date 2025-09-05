@@ -12,13 +12,12 @@ html.dark body {
 }
 
 /* Links */
-a {
-  color: #0969da !important; 
+.blue {
+  color: #3a8ae6 !important; 
 }
-html.dark a {
-  color: #58a6ff !important;
+.underline:hover{
+  text-decoration: underline;
 }
-
 /* Headings */
 h1, h2, h3, h4, h5, h6, .heading {
   color: #24292f !important;
