@@ -67,7 +67,7 @@ export default function Home({ posts }) {
               <div className="mt-3 flex gap-3 items-center">
                 <Link
                   href="/blogs"
-                  className="button inline-block px-3 py-1 rounded-md border border-neutral-300 sm:inline-flex items-center gap-2 text-sm  blue"
+                  className="button inline-block px-3 py-1 rounded-md border border-neutral-300 sm:inline-flex items-center gap-2 text-sm hover:underline blue"
                 >
                   Browse all blogs
                 </Link>

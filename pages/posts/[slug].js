@@ -56,7 +56,7 @@ export default function Post({ frontmatter, mdxSource }) {
 
           {/* Featured image */}
           {frontmatter.image && (
-            <div className="relative w-full h-64 sm:h-80 md:h-96 mb-6 rounded-lg overflow-hidden shadow-md">
+            <div className="relative w-full h-64 sm:h-80 md:h-96 mb-6 rounded-lg shadow-md mx-auto">
               <Image
                 src={frontmatter.image}
                 alt={frontmatter.title}
