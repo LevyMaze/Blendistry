@@ -1,3 +1,4 @@
+//components/CodeBlock.js
 import { useState } from "react";
 
 function CodeBlock({ children, className = "" }) {

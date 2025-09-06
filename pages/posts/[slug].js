@@ -1,13 +1,13 @@
-import { getPostBySlug, getAllPosts } from "../../lib/posts";
+// pages/posts/[slug].js
+import { getAllPosts, getPostBySlug } from "../../lib/posts";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
-// ✅ Import CodeBlock instead of duplicating
 import CodeBlock from "../../components/CodeBlock";
+import PostStats from "../../components/PostStats";
 
 const components = {
   h1: (props) => <h1 className="text-3xl font-bold mb-4" {...props} />,
@@ -20,7 +20,7 @@ const components = {
     ),
 };
 
-export default function Post({ frontmatter, mdxSource }) {
+export default function Post({ slug, frontmatter, mdxSource }) {
   const { theme } = useTheme();
   const router = useRouter();
 
@@ -31,15 +31,10 @@ export default function Post({ frontmatter, mdxSource }) {
           {/* Back button */}
           <p
             onClick={() => router.back()}
-            className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max 
-                       text-blue-600 dark:text-blue-400 
-                       transition transform duration-200 ease-in-out"
+            className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max text-blue-600 dark:text-blue-400 transition transform duration-200 ease-in-out"
           >
-            <span
-              className="text-xl font-bold transform transition-transform duration-200 ease-in-out
-                         group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500"
-            >
-              🠔
+            <span className="text-xl font-bold transform transition-transform duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500">
+              
             </span>
           </p>
 
@@ -48,11 +43,20 @@ export default function Post({ frontmatter, mdxSource }) {
             {frontmatter.title}
           </h1>
 
-          {/* Meta */}
-          <div className="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
-            <span>Date: {frontmatter.date}</span> &nbsp;|&nbsp;
-            <span>Author: {frontmatter.author || "Unknown"}</span>
-          </div>
+          {/* Author, date, stats */}
+<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 text-neutral-600 dark:text-neutral-400 text-sm mb-6">
+  {/* Left: Author + Date */}
+  <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-0">
+    <span>Author: {frontmatter.author || "Unknown"}</span>
+    <span>Date: {frontmatter.date}</span>
+  </div>
+
+  {/* Right: Stats */}
+  <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
+    <PostStats slug={slug} inline />
+  </div>
+</div>
+
 
           {/* Featured image */}
           {frontmatter.image && (
@@ -95,6 +99,7 @@ export default function Post({ frontmatter, mdxSource }) {
   );
 }
 
+// Static paths
 export async function getStaticPaths() {
   const posts = getAllPosts();
   return {
@@ -103,15 +108,13 @@ export async function getStaticPaths() {
   };
 }
 
+// Static props
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const post = getPostBySlug(slug);
   const mdxSource = await serialize(post.content);
 
   return {
-    props: {
-      frontmatter: post.frontmatter,
-      mdxSource,
-    },
+    props: { slug, frontmatter: post.frontmatter, mdxSource },
   };
 }

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Loader from "../components/Loader";
 import { DefaultSeo } from "next-seo";
-import SEO from "../next-seo.config"; // 👈 config file we created earlier
+import SEO from "../next-seo.config"; 
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
