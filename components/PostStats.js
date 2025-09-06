@@ -60,7 +60,7 @@ export default function PostStats({ slug }) {
   return (
     <div className="flex sm:flex-row justify-between items-center text-sm">
       {/* Views */}
-      <span className="mb-2 sm:mb-0 text-neutral-400 flex items-center gap-1 px-3 ml-5 py-1 rounded-lg bg-blue-500 text-white hover:underline">
+      <span className="mb-2 sm:mb-0 text-neutral-400 flex items-center gap-1 px-3 ml-5 py-1 rounded-lg hover:underline">
         {views} views
       </span>
 
@@ -68,7 +68,7 @@ export default function PostStats({ slug }) {
 <div className="flex gap-4">
   <span
     onClick={() => handleVote("like")}
-    className="flex items-center gap-1 px-3 ml-5 py-1 rounded-lg bg-green-700 text-white hover:bg-green-800 transition"
+    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition"
   >
     <span>{likes}</span>
     <Image src={likeIcon} alt="Like" width={18} height={18} />
@@ -76,7 +76,7 @@ export default function PostStats({ slug }) {
 
   <span
     onClick={() => handleVote("dislike")}
-    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-red-700 text-white hover:bg-red-800 transition"
+    className="flex items-center gap-1 px-3 py-1 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition"
   >
     <span>{dislikes}</span>
     <Image src={dislikeIcon} alt="Dislike" width={18} height={18} />
