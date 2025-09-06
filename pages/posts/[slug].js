@@ -34,7 +34,7 @@ export default function Post({ slug, frontmatter, mdxSource }) {
             className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max text-blue-600 dark:text-blue-400 transition transform duration-200 ease-in-out"
           >
             <span className="text-xl font-bold transform transition-transform duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500">
-              
+              く Back
             </span>
           </p>
 
