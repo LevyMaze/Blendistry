@@ -59,6 +59,7 @@ export default function Navbar() {
           <Link href="/" className="hover:underline">Home</Link>
           <Link href="/blogs" className="hover:underline">Blogs</Link>
           <Link href="/about" className="hover:underline">About</Link>
+          <Link href="/feedback" className="hover:underline">Feedback</Link>
 
           {/* Category Dropdown */}
           <div className="relative" ref={dropdownRef}>
@@ -117,7 +118,7 @@ export default function Navbar() {
             <Link href="/" className="block py-1 hover:underline" onClick={() => setIsOpen(false)}>Home</Link>
             <Link href="/blogs" className="block py-1 hover:underline" onClick={() => setIsOpen(false)}>Blogs</Link>
             <Link href="/about" className="block py-1 hover:underline" onClick={() => setIsOpen(false)}>About</Link>
-
+             <Link href="/feedback" className="block py-1 hover:underline" onClick={() => setIsOpen(false)}>feedback</Link>
             {/* Mobile Categories */}
             <details>
               <summary className="cursor-pointer py-1">Categories</summary>

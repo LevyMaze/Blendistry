@@ -1,34 +1,14 @@
 // pages/index.js
-import Link from "next/link";
-import { getAllPosts } from "../lib/posts";
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-
-// 🔹 Category-based color helper
-function getCategoryClasses(category) {
-  switch ((category || "").toLowerCase()) {
-    case "frontend":
-      return "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200 hover:underline";
-    case "backend":
-      return "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200 hover:underline";
-    case "database":
-      return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200 hover:underline";
-    case "git & github":
-    case "git-github":
-      return "bg-black text-white dark:bg-gray-800 dark:text-gray-100 hover:underline";
-    case "debugging":
-      return "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200 hover:underline";
-    case "general":
-    default:
-      return "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200 hover:underline";
-  }
-}
+import { getAllPosts } from "../lib/posts";
+import BlogCard from "../components/BlogCard"; // Import reusable BlogCard
 
 export default function Home({ posts }) {
   const [search, setSearch] = useState("");
   const normalizedSearch = search.trim().toLowerCase();
 
-  // Filtered posts based on search
   const filteredPosts = useMemo(() => {
     if (!normalizedSearch) return posts;
     return posts.filter((post) => {
@@ -47,7 +27,6 @@ export default function Home({ posts }) {
     });
   }, [posts, normalizedSearch]);
 
-  // Only show 4 latest posts by default
   const latestPosts = filteredPosts.slice(0, 4);
 
   return (
@@ -57,12 +36,11 @@ export default function Home({ posts }) {
         <div className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-none sm:rounded-xl border border-neutral-200 dark:border-neutral-700 p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <heading className="text-2xl sm:text-3xl font-semibold blue">
+              <h1 className="text-2xl sm:text-3xl font-semibold blue">
                 Blendistry
-              </heading>
+              </h1>
               <p className="mt-1 text-neutral-600 dark:text-neutral-300 max-w-xl">
                 Blendistry is a knowledge platform dedicated to clear, practical, and disciplined guidance in web development.
-                 From frontend to backend, databases to debugging, we deliver precise resources that cut through noise and accelerate developer growth.
               </p>
               <div className="mt-3 flex gap-3 items-center">
                 <Link
@@ -76,12 +54,6 @@ export default function Home({ posts }) {
                 </span>
               </div>
             </div>
-            <div className="hidden sm:flex items-center gap-3">
-              <div className="text-xs text-neutral-700 dark:text-neutral-500 text-right">
-                <div className="font-medium">Curated for Developers</div>
-                <div className="mt-1">Concise, practical solutions</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -91,87 +63,35 @@ export default function Home({ posts }) {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center sm:text-left mb-0 text-neutral-900 dark:text-neutral-100">
           Latest Posts
         </h1>
-        {/* 🔹 Floating label search */}
-        <div className="floating-label w-full sm:w-64">
+        <div className="relative w-full sm:w-64">
           <input
             id="search"
             type="text"
             placeholder=" "
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="peer w-full p-3 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <label htmlFor="search">Search posts</label>
+          <label
+            htmlFor="search"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500 dark:text-neutral-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-500 px-1"
+          >
+            Search Latest posts
+          </label>
         </div>
       </div>
 
       {/* ------------------ Posts List ------------------ */}
       <div className="flex flex-col gap-5 sm:gap-7">
-        {latestPosts.length === 0 && (
+        {latestPosts.length === 0 ? (
           <div className="p-4 rounded-md border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
             No posts match your search.
           </div>
+        ) : (
+          latestPosts.map((post, i) => (
+            <BlogCard key={post.slug} post={post} index={i}/>
+          ))
         )}
-        {latestPosts.map((post, i) => (
-          <motion.div
-            key={post.slug}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="w-full"
-          >
-            <Link href={`/posts/${post.slug}`} className="block">
-              <div className="w-full bg-neutral-100 dark:bg-neutral-800 rounded-none sm:rounded-xl shadow-dark overflow-hidden hover:scale-[1.01] transition-transform duration-300 cursor-pointer flex flex-col sm:flex-row">
-                {/* Thumbnail */}
-                {post.frontmatter?.image ? (
-                  <div className="w-full sm:w-48 h-48 overflow-hidden bg-neutral-200 dark:bg-neutral-700 hover:underline">
-                    <img
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover block"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full sm:w-48 h-48 bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center text-neutral-500 dark:text-neutral-400">
-                    No Image
-                  </div>
-                )}
-                <div className="p-4 sm:p-5 flex-1">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 text-neutral-900 dark:text-neutral-100 hover:underline">
-                    {post.frontmatter.title}
-                  </h2>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-                    Date: {post.frontmatter.date} &nbsp;|&nbsp; Author:{" "}
-                    {post.frontmatter.author || "Unknown"}
-                  </p>
-                  {post.frontmatter?.category && (
-                    <Link
-                      href={`/category/${post.frontmatter.category.toLowerCase()}`}
-                    >
-                      <span
-                        className={`inline-block mt-2 text-xs px-2 py-1 rounded-md cursor-pointer ${getCategoryClasses(
-                          post.frontmatter.category
-                        )}`}
-                      >
-                        {post.frontmatter.category}
-                      </span>
-                    </Link>
-                  )}
-                  {/* NEW: Excerpt/Description */}
-                  {post.frontmatter?.excerpt && (
-                    <p className="text-neutral-700 dark:text-neutral-300 text-sm">
-                      {post.frontmatter.excerpt}
-                    </p>
-                  )}
-                  <p className="text-neutral-700 dark:text-neutral-300 text-sm">
-                    Read more …
-                  </p>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
       </div>
 
       {/* ------------------ Explore More Button ------------------ */}

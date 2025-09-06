@@ -15,6 +15,18 @@ html.dark body {
 .blue {
   color:#3B82F6 !important; 
 }
+
+.vote{
+  color: white !important;
+  background-color: #3838388e !important;
+  transition: all 250ms ease-in-out;
+  border: solid 1px rgb(136, 136, 136);
+}
+
+.vote:hover{
+  background-color: #423d3dda !important;
+  cursor: pointer;
+}
 .underline:hover{
   text-decoration: underline;
 }
