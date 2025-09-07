@@ -71,9 +71,9 @@ export default function BlogCard({ post, index }) {
             </div>
           )}
 
-          <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div className="sm:p-5 flex-1 flex flex-col justify-between">
             <div>
-              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 mt-4 text-neutral-900 dark:text-neutral-100 hover:underline">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 mt-3 text-neutral-900 dark:text-neutral-100 hover:underline">
                 {post.frontmatter.title}
               </h2>
               <p className="text-neutral-600 dark:text-neutral-400 text-sm">
@@ -81,15 +81,15 @@ export default function BlogCard({ post, index }) {
               </p>
               {post.frontmatter?.category && (
                 <Link href={`/category/${catKey}`}>
-                  <span className={`inline-block mt-2 text-xs px-2 py-1 rounded-md cursor-pointer ${categoryColors[catKey] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"}`}>
+                  <span className={`inline-block text-xs px-2 py-1 rounded-md cursor-pointer ${categoryColors[catKey] || "bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200"}`}>
                     {post.frontmatter.category}
                   </span>
                 </Link>
               )}
               {post.frontmatter?.excerpt && (
-                <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-2">
-                  {post.frontmatter.excerpt.length > 120
-                    ? post.frontmatter.excerpt.slice(0, 120) + "..."
+                <p className="text-neutral-700 dark:text-neutral-300 text-sm">
+                  {post.frontmatter.excerpt.length > 60
+                    ? post.frontmatter.excerpt.slice(0, 60) + "..."
                     : post.frontmatter.excerpt}
                 </p>
               )}

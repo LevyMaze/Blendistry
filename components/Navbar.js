@@ -84,12 +84,12 @@ export default function Navbar() {
 
           {/* Categories */}
           <div className="relative" ref={categoryRef}>
-            <button
+            <span
               onClick={() => { setCategoryOpen(!categoryOpen); setProfileOpen(false); }}
-              className="flex items-center gap-1 hover:text-blue-500 transition"
+              className="flex items-center gap-1 hover:text-blue-500 transition cursor-pointer"
             >
               Categories <ChevronDown size={14} />
-            </button>
+            </span>
             <AnimatePresence>
               {categoryOpen && (
                 <motion.div
@@ -113,37 +113,30 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* Theme Toggle */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            aria-label="toggle theme"
-            className="p-1 rounded"
-          >
-            {mounted ? (theme === "dark" ? <Moon size={18} /> : <Sun size={18} />) : "..."}
-          </motion.button>
+          
 
           {/* Profile / Auth */}
           {!user ? (
-            <button
+            <span
               onClick={handleLogin}
-              className="flex items-center gap-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-500"
+              className="flex items-center gap-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-500 cursor-pointer"
             >
               <Github size={16} /> Login
-            </button>
+            </span>
           ) : (
             <div className="relative" ref={profileRef}>
-              <button
+              <span
                 onClick={() => { setProfileOpen(!profileOpen); setCategoryOpen(false); }}
-                className="flex items-center gap-1 hover:text-blue-500 transition"
+                className="flex items-center gap-1 hover:text-blue-500 cursor-pointer transition"
               >
                 <img
                   src={user.user_metadata.avatar_url}
                   alt="avatar"
                   className="w-7 h-7 rounded-full border"
                 />
-                <span>{user.user_metadata.user_name}</span>
-              </button>
+                <span className="flex items-center">{user.user_metadata.user_name} <ChevronDown size={14} /></span>
+              </span>
+              
               <AnimatePresence>
                 {profileOpen && (
                   <motion.div
@@ -166,17 +159,28 @@ export default function Navbar() {
                     >
                       My Feedback
                     </Link>
-                    <button
+                    <span
                       onClick={handleLogout}
-                      className="w-full text-left px-3 py-1 text-red-600 flex items-center gap-1 hover:text-red-500"
+                      className="w-full text-left px-3 py-1 text-red-600 flex items-center gap-1 hover:text-red-500 cursor-pointer"
                     >
                       <LogOut size={14} /> Logout
-                    </button>
+                    </span>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           )}
+
+{/* Theme Toggle */}
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            aria-label="toggle theme"
+            className="p-1 rounded"
+          >
+            {mounted ? (theme === "dark" ? <Moon size={18} /> : <Sun size={18} />) : "..."}
+          </motion.button>
+
         </div>
 
         {/* Mobile Menu Button */}
@@ -188,76 +192,82 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            className="md:hidden bg-neutral-50 dark:bg-neutral-900 px-4 py-3 space-y-2 shadow-inner text-sm"
-          >
-            <Link href="/" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Home</Link>
-            <Link href="/blogs" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Blogs</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">About</Link>
-            <Link href="/feedback" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Feedback</Link>
+{/* Mobile Dropdown */}
+<AnimatePresence>
+  {isOpen && (
+    <motion.div
+      initial={{ opacity: 0, y: -6 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -6 }}
+      className="md:hidden bg-neutral-50 dark:bg-neutral-900 px-4 py-3 space-y-2 shadow-inner text-sm"
+    >
+      <Link href="/" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Home</Link>
+      <Link href="/blogs" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Blogs</Link>
+      <Link href="/about" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">About</Link>
+      <Link href="/feedback" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Feedback</Link>
 
-            <details className="group">
-              <summary className="cursor-pointer py-1 group-open:text-blue-500">Categories</summary>
-              <div className="pl-3 mt-1 space-y-1">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={cat.slug === "all" ? "/blogs" : `/category/${cat.slug}`}
-                    onClick={() => setIsOpen(false)}
-                    className="block hover:text-blue-500"
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-              </div>
-            </details>
-
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setIsOpen(false); }}
-              aria-label="toggle theme"
-              className="flex items-center gap-2 py-1"
+      <details className="group">
+        <summary className="cursor-pointer py-1 group-open:text-blue-500">Categories</summary>
+        <div className="pl-3 mt-1 space-y-1">
+          {categories.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={cat.slug === "all" ? "/blogs" : `/category/${cat.slug}`}
+              onClick={() => setIsOpen(false)}
+              className="block hover:text-blue-500"
             >
-              {mounted ? theme === "dark" ? <Moon size={16} /> : <Sun size={16} /> : "..."}
-              <span>{theme === "dark" ? "Dark" : "Light"}</span>
-            </motion.button>
+              {cat.name}
+            </Link>
+          ))}
+        </div>
+      </details>
 
-            {!user ? (
-              <button
-                onClick={handleLogin}
-                className="w-full flex items-center justify-center gap-2 py-1 bg-blue-500 text-white rounded-md"
-              >
-                <Github size={16} /> Login
-              </button>
-            ) : (
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <img
-                    src={user.user_metadata.avatar_url}
-                    alt="avatar"
-                    className="w-7 h-7 rounded-full"
-                  />
-                  <span>{user.user_metadata.user_name}</span>
-                </div>
-                <Link href="/settings" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">Settings</Link>
-                <Link href="/suggestions" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">My Feedback</Link>
-                <button
-                  onClick={handleLogout}
-                  className="w-full py-1 text-red-600 flex items-center gap-1"
-                >
-                  <LogOut size={14} /> Logout
-                </button>
-              </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      
+
+      {/* Profile Dropdown */}
+      {!user ? (
+        <button
+          onClick={handleLogin}
+          className="w-full flex items-center justify-center gap-2 py-1 bg-blue-500 text-white rounded-md"
+        >
+          <Github size={16} /> Login
+        </button>
+      ) : (
+        <details className="group">
+          <summary className="flex items-center gap-2 cursor-pointer py-1 group-open:text-blue-500">
+            <img
+              src={user.user_metadata.avatar_url}
+              alt="avatar"
+              className="w-7 h-7 rounded-full"
+            />
+            <span className="flex items-center">{user.user_metadata.user_name} <ChevronDown size={14} /></span>
+          </summary>
+          <div className="pl-3 mt-1 space-y-1">
+            <Link href="/settings" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">Settings</Link>
+            <Link href="/suggestions" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">My Feedback</Link>
+            <span
+              onClick={handleLogout}
+              className="py-1 text-red-600 flex items-center gap-1"
+            >
+              <LogOut size={14} /> Logout
+            </span>
+          </div>
+        </details>
+      )}
+      {/* Theme toggle */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setIsOpen(false); }}
+        aria-label="toggle theme"
+        className="flex items-center gap-2 py-1"
+      >
+        {mounted ? theme === "dark" ? <Moon size={16} /> : <Sun size={16} /> : "..."}
+        <span>{theme === "dark" ? "Dark" : "Light"}</span>
+      </motion.button>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </nav>
   );
 }

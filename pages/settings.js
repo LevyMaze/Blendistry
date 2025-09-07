@@ -167,7 +167,7 @@ export default function SettingsPage() {
         />
         <div>
           <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            Hello, {user.user_metadata?.user_name || "User"} 👋
+            <span className="text-sm text-gray-500">Logged in as</span> <br/>{user.user_metadata?.user_name || "User"}
           </h2>
           <p className="text-sm text-gray-500">
             ID: <span className="font-mono">{user.id}</span>
@@ -194,17 +194,17 @@ export default function SettingsPage() {
           </label>
 
           {/* Remember Theme */}
-          <label className="flex items-center gap-3">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={settings.saveTheme}
               onChange={handleChange("saveTheme")}
             />
-            <span>Remember theme</span>
+             Remember theme <span className="text-red-600 text-sm font-semibold"> (Prevents theme change)</span>
           </label>
 
           {/* Cookies */}
-          <label className="flex items-center gap-3">
+          <label className="flex items-center gap-2">
             <input
               type="checkbox"
               checked={settings.cookieConsent}
