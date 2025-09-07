@@ -44,19 +44,15 @@ export default function Post({ slug, frontmatter, mdxSource }) {
           </h1>
 
           {/* Author, date, stats */}
-<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 text-neutral-600 dark:text-neutral-400 text-sm mb-6">
-  {/* Left: Author + Date */}
-  <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-0">
-    <span>Author: {frontmatter.author || "Unknown"}</span>
-    <span>Date: {frontmatter.date}</span>
-  </div>
-
-  {/* Right: Stats */}
-  <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
-    <PostStats slug={slug} inline />
-  </div>
-</div>
-
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 text-neutral-600 dark:text-neutral-400 text-sm mb-6">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-0">
+              <span>Author: {frontmatter.author || "Unknown"}</span>
+              <span>Date: {frontmatter.date}</span>
+            </div>
+            <div className="flex flex-wrap gap-2 sm:gap-4 items-center">
+              <PostStats slug={slug} inline />
+            </div>
+          </div>
 
           {/* Featured image */}
           {frontmatter.image && (
@@ -79,7 +75,13 @@ export default function Post({ slug, frontmatter, mdxSource }) {
       </div>
 
       {/* Comments */}
-      <div className="mt-10 w-full sm:max-w-3xl sm:mx-auto">
+      <div className="mt-10 w-full sm:max-w-3xl sm:mx-auto space-y-3">
+        {/* Info about Giscus login */}
+        <div className="p-3 rounded bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 text-sm">
+          Note: Signing in is required to comment via GitHub. This is separate from signing in to Blendistry for settings and feedback.
+        </div>
+
+
         <Giscus
           id="comments"
           repo="LevyMaze/Blendistry"
