@@ -157,7 +157,7 @@ export default function Navbar() {
                       className="block px-3 py-1 hover:text-blue-500"
                       onClick={() => setProfileOpen(false)}
                     >
-                      My Feedback
+                      My Feedbacks
                     </Link>
                     <span
                       onClick={handleLogout}
@@ -226,12 +226,12 @@ export default function Navbar() {
 
       {/* Profile Dropdown */}
       {!user ? (
-        <button
+        <span
           onClick={handleLogin}
-          className="w-full flex items-center justify-center gap-2 py-1 bg-blue-500 text-white rounded-md"
+          className="flex mr-50 items-center justify-center gap-2 py-1 bg-blue-500 text-white rounded-md"
         >
           <Github size={16} /> Login
-        </button>
+        </span>
       ) : (
         <details className="group">
           <summary className="flex items-center gap-2 cursor-pointer py-1 group-open:text-blue-500">
@@ -244,7 +244,7 @@ export default function Navbar() {
           </summary>
           <div className="pl-3 mt-1 space-y-1">
             <Link href="/settings" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">Settings</Link>
-            <Link href="/suggestions" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">My Feedback</Link>
+            <Link href="/suggestions" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">My Feedbacks</Link>
             <span
               onClick={handleLogout}
               className="py-1 text-red-600 flex items-center gap-1"

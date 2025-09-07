@@ -74,11 +74,11 @@ export default function FeedbackForm() {
     return (
       <div className="feedback-container">
         <p className="feedback-login-text">
-          Please log in with <FaGithub className="inline-icon" /> GitHub to leave feedback.
+          Please log in with GitHub to leave feedback.
         </p>
         <button
           onClick={() => supabase.auth.signInWithOAuth({ provider: "github" })}
-          className="feedback-btn github-btn"
+          className="feedback-btn github-btn flex align-center"
         >
           <FaGithub className="btn-icon" /> Login with GitHub
         </button>
