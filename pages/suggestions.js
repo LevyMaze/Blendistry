@@ -56,7 +56,7 @@ export default function Suggestions() {
         </div>
       ) : suggestions.length === 0 ? (
         <p className="text-gray-600 dark:text-gray-300">
-          You haven’t submitted any Feedbacks yet.
+          You haven't submitted any Feedbacks yet.
         </p>
       ) : (
         <ul className="space-y-4">
