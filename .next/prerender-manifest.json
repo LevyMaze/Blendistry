@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/category/frontend":{},"/category/backend":{},"/category/database":{},"/category/git-github":{},"/category/debugging":{},"/category/general":{},"/posts/post1":{},"/posts/post2":{},"/posts/post3":{},"/posts/post4":{},"/posts/post5":{},"/posts/post6":{},"/posts/post7":{},"/posts/post8":{},"/posts/post9":{}},"dynamicRoutes":{"/category/[category]":{"dataRoute":null,"dataRouteRegex":null,"fallback":"/category/[category]","fallbackRevalidate":false,"fallbackSourceRoute":"/category/[category]","routeRegex":"^\\/category\\/([^/]+?)(?:\\/)?$","allowHeader":[]},"/posts/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":false,"fallbackRevalidate":false,"fallbackSourceRoute":"/posts/[slug]","routeRegex":"^\\/posts\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"5752bf7ea0e8f911125db7a156fdb2d3","previewModeSigningKey":"d1b595c70d211493b450fb5c06839c0a55d9a3a103f73b29edf9ad8bc8fd3167","previewModeEncryptionKey":"83d11d4fd6b1be3a7be3cdcf85e8492c92ea3f04e4f872d3d210e9c2f240cfb6"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "825ecb3c458ba7f58679978dd9e33005",
+    "previewModeSigningKey": "8901a9a3a06ea8e8b41b071ae63da267afeae880bc18d2a66b51b3f474c5325e",
+    "previewModeEncryptionKey": "3ed6616b32f40363914d3f1e5efc6e7966daa94a7244e737512e15c7aca8d386"
+  }
+}
