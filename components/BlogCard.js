@@ -71,7 +71,7 @@ export default function BlogCard({ post, index }) {
             </div>
           )}
 
-          <div className="sm:p-5 flex-1 flex flex-col justify-between">
+          <div className="p-5 sm:p-5 flex-1 flex flex-col justify-between">
             <div>
               <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 mt-3 text-neutral-900 dark:text-neutral-100 hover:underline">
                 {post.frontmatter.title}
