@@ -5,8 +5,8 @@ import { useTheme } from "next-themes";
 import { FiGithub, FiLogOut, FiCheckCircle, FiAlertTriangle } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
-import previewLight from "../images/preview-light.png";
-import previewDark from "../images/preview-dark.png";
+import previewLight from "/public/preview-light.png";
+import previewDark from "/public/preview-dark.png";
 
 const DEFAULT_SETTINGS = {
   theme: "system",
