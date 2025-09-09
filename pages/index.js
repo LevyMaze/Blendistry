@@ -99,7 +99,7 @@ export default function Home({ posts }) {
         <div className="mt-6 text-center">
           <Link
             href="/blogs"
-            className="inline-block px-6 py-2 rounded-md border hover:underline"
+            className="inline-block px-6 py-2 rounded-md border hover:text-blue-500 hover:border-blue-400 transition border-gray-500"
           >
             Explore More
           </Link>

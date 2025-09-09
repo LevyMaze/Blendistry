@@ -87,10 +87,10 @@ export default function AdminDashboard() {
 
   if (!user) {
     return (
-      <div className="p-6 text-center border rounded-xl max-w-lg mx-auto mt-20">
-        <h1 className="text-xl font-bold mb-4">Access Denied</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Please log in with GitHub to access this page.
+      <div className="p-6 text-center border rounded-xl max-w-lg mx-auto mt-20 border-red-500">
+        <span className="text-xl font-bold mb-4 text-red-600 dark:red danger">Access Denied</span>
+        <p className="text-gray-600 dark:text-gray-400 mt-5">
+          Please log in with Developer Account on GitHub to access this page.
         </p>
       </div>
     );
@@ -98,11 +98,10 @@ export default function AdminDashboard() {
 
   if (!ADMIN_USERS.includes(user.user_metadata.user_name)) {
     return (
-      <div className="p-6 text-center border rounded-xl max-w-lg mx-auto mt-20">
-        <h1 className="text-xl font-bold mb-4 text-red-600">Unauthorized</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Hello <b>{user.user_metadata.user_name}</b>, you don’t have permission
-          to access this page.
+      <div className="p-6 text-center border rounded-xl max-w-lg mx-auto mt-20 border-yellow-600">
+        <span className="text-xl font-bold mb-4 text-red-600 warning">Unauthorized</span>
+        <p className="text-gray-600 dark:text-gray-400 mt-5">
+          Hello <b>{user.user_metadata.user_name}</b>, The developer did not give you access to this page.
         </p>
       </div>
     );
@@ -126,7 +125,7 @@ export default function AdminDashboard() {
     <div className="p-4 sm:p-6 md:p-8 space-y-8">
       {/* Header */}
       <header className="flex flex-col sm:flex-row justify-between items-center gap-4 border-b pb-4">
-        <h1 className="text-2xl sm:text-3xl font-bold">Admin Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">Dashboard</h1>
         <div className="flex gap-3 items-center">
           <img
             src={user.user_metadata.avatar_url}

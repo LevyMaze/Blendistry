@@ -73,7 +73,7 @@ export default function Layout({ children, categories }) {
               href="https://github.com/LevyMaze"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-600 hover:underline transition"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-600 bg-gray-800 text-gray-200 hover:bg-gray-900 transition"
               aria-label="LevyMaze on GitHub"
             >
               <svg
@@ -98,7 +98,7 @@ export default function Layout({ children, categories }) {
             {/* Email */}
             <a
               href="mailto:LevyMaze@gmail.com"
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-600 hover:underline transition"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-neutral-200 dark:border-neutral-600 hover:text-gray-500 hover:border-gray-500 transition"
               aria-label="Send email to LevyMaze"
             >
               <svg

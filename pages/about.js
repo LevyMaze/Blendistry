@@ -59,7 +59,7 @@ Our purpose is simple: empower developers with focused resources that accelerate
         </p>
         <Link
           href="/blogs"
-          className="button inline-block px-6 py-2 rounded-lg font-medium border hover:underline "
+          className="button inline-block px-6 py-2 rounded-lg font-medium border border-gray-500 hover:text-blue-500 hover:border-blue-400 transition"
         >
           Browse Blogs
         </Link>

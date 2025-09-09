@@ -17,6 +17,8 @@
   --blue-hover: #2563eb;
   --green: #16a34a;
   --red: #dc2626;
+  --warning: #f59e0b;
+
 
   --muted-light: #57606a;
   --muted-dark: #8b949e;
@@ -226,30 +228,90 @@ html.dark article pre, html.dark article code {
 .floating-label input:not(:placeholder-shown) + label {
   top: 0.3rem; font-size: 0.75rem; color: var(--blue);
 }
-
 /* ------------------ Feedback Form ------------------ */
 .feedback-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  width: 100%; /* full width but respects max-width on form */
+  padding: 1rem; /* add breathing space for mobile */
+  box-sizing: border-box;
 }
+
 .feedback-form {
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* keeps it nice for desktop */
   background: var(--bg-card-light);
   color: var(--text-light);
   border: 1px solid var(--border-light);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
+
+/* Dark mode support */
 .dark .feedback-form {
   background: var(--bg-card-dark);
   color: var(--text-dark);
   border: 1px solid var(--border-dark);
 }
+
+/* -------- Responsiveness -------- */
+
+/* Small phones */
+@media (max-width: 400px) {
+  .feedback-form {
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+
+  .feedback-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .feedback-username {
+    font-size: 0.85rem;
+  }
+
+  .feedback-textarea {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .feedback-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 401px) and (max-width: 768px) {
+  .feedback-form {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .feedback-textarea {
+    font-size: 1rem;
+  }
+
+  .feedback-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Larger screens */
+@media (min-width: 769px) {
+  .feedback-form {
+    padding: 2rem;
+  }
+}
+
 
 /* ------------------ Input Group ------------------ */
 .input-group { position: relative; margin-bottom: 1rem; }
@@ -399,3 +461,12 @@ html.dark article pre, html.dark article code {
 /* ------------------ Icons ------------------ */
 .btn-icon { margin-right: 6px; vertical-align: middle; font-size: 1.2rem; }
 .inline-icon { margin-right: 4px; vertical-align: middle; font-size: 1rem; }
+
+/* ----------------Misc-------------------- */
+.danger{
+  color: var(--red) !important;
+}
+
+.warning{
+  color: var(--warning) !important;
+}

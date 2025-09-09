@@ -86,7 +86,7 @@ export default function Navbar() {
           <div className="relative" ref={categoryRef}>
             <span
               onClick={() => { setCategoryOpen(!categoryOpen); setProfileOpen(false); }}
-              className="flex items-center gap-1 hover:text-blue-500 transition cursor-pointer"
+              className="flex items-center gap-1 hover:text-blue-500 transition cursor-pointer transition"
             >
               Categories <ChevronDown size={14} />
             </span>
@@ -96,13 +96,13 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
-                  className="absolute mt-1 bg-neutral-50 dark:bg-neutral-900 rounded-md py-1 w-40 z-50 shadow-sm"
+                  className="absolute mt-1 bg-neutral-50 dark:bg-neutral-900 rounded-md py-1 w-40 z-50 shadow-sm transition"
                 >
                   {categories.map((cat) => (
                     <Link
                       key={cat.slug}
                       href={cat.slug === "all" ? "/blogs" : `/category/${cat.slug}`}
-                      className="block px-3 py-1 hover:text-blue-500 rounded"
+                      className="block px-3 py-1 hover:text-blue-500 rounded transition"
                       onClick={() => setCategoryOpen(false)}
                     >
                       {cat.name}
@@ -119,7 +119,7 @@ export default function Navbar() {
           {!user ? (
             <span
               onClick={handleLogin}
-              className="flex items-center gap-2 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-500 cursor-pointer"
+              className="flex items-center gap-2 px-3 py-1 bg-gray-800 text-white rounded-md hover:bg-gray-900 cursor-pointer transition border border-gray-500 transition"
             >
               <Github size={16} /> Login
             </span>
@@ -147,21 +147,21 @@ export default function Navbar() {
                   >
                     <Link
                       href="/settings"
-                      className="block px-3 py-1 hover:text-blue-500 flex items-center gap-1"
+                      className="block px-3 py-1 hover:text-blue-500 flex items-center gap-1 transition"
                       onClick={() => setProfileOpen(false)}
                     >
                       <Settings size={14} /> Settings
                     </Link>
                     <Link
                       href="/suggestions"
-                      className="block px-3 py-1 hover:text-blue-500"
+                      className="block px-3 py-1 hover:text-blue-500 transition"
                       onClick={() => setProfileOpen(false)}
                     >
                       My Feedbacks
                     </Link>
                     <span
                       onClick={handleLogout}
-                      className="w-full text-left px-3 py-1 text-red-600 flex items-center gap-1 hover:text-red-500 cursor-pointer"
+                      className="w-full text-left px-3 py-1 text-red-600 flex items-center gap-1 hover:text-red-400 cursor-pointer transition"
                     >
                       <LogOut size={14} /> Logout
                     </span>
@@ -207,7 +207,7 @@ export default function Navbar() {
       <Link href="/feedback" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Feedback</Link>
 
       <details className="group">
-        <summary className="cursor-pointer py-1 group-open:text-blue-500">Categories</summary>
+        <summary className="cursor-pointer py-1 group-open:text-blue-500 border border-gray-500 dark:border-gray-500 mr-55 rounded py-2 p-1">Categories</summary>
         <div className="pl-3 mt-1 space-y-1">
           {categories.map((cat) => (
             <Link
@@ -222,13 +222,22 @@ export default function Navbar() {
         </div>
       </details>
 
-      
+      {/* Theme toggle */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setIsOpen(false); }}
+        aria-label="toggle theme"
+        className="flex items-center gap-2 py-1"
+      >
+        {mounted ? theme === "dark" ? <Moon size={16} /> : <Sun size={16} /> : "..."}
+        <span>{theme === "dark" ? "Dark" : "Light"}</span>
+      </motion.button>
 
       {/* Profile Dropdown */}
       {!user ? (
         <span
           onClick={handleLogin}
-          className="flex mr-50 items-center justify-center gap-2 py-1 bg-blue-500 text-white rounded-md"
+          className="flex mr-59 items-center justify-center gap-2 py-2 bg-gray-800 border-gray-500 hover:bg-gray-600 border text-white rounded-md"
         >
           <Github size={16} /> Login
         </span>
@@ -254,16 +263,7 @@ export default function Navbar() {
           </div>
         </details>
       )}
-      {/* Theme toggle */}
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setIsOpen(false); }}
-        aria-label="toggle theme"
-        className="flex items-center gap-2 py-1"
-      >
-        {mounted ? theme === "dark" ? <Moon size={16} /> : <Sun size={16} /> : "..."}
-        <span>{theme === "dark" ? "Dark" : "Light"}</span>
-      </motion.button>
+      
     </motion.div>
   )}
 </AnimatePresence>
