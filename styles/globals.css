@@ -459,3 +459,7 @@ s
 .summary{
   border: 1.5px solid rgba(129, 120, 120, 0.486);
 }
+.glass{
+  background-color: rgba(224, 217, 217, 0.288);
+  padding: 2px 8px;
+}

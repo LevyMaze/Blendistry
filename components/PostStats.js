@@ -104,7 +104,7 @@ export default function PostStats({ slug }) {
           {/* Like */}
           <span
             onClick={() => handleVote("like")}
-            className="flex items-center gap-1 px-3 py-1 rounded-lg cursor-pointer border border-gray-500 hover:text-blue-500 transition"
+            className="flex items-center gap-1 rounded-lg cursor-pointer hover:text-blue-500 transition glass"
           >
             <span>{likes}</span>
             <FiThumbsUp className="w-5 h-5" />
@@ -113,7 +113,7 @@ export default function PostStats({ slug }) {
           {/* Dislike */}
           <span
             onClick={() => handleVote("dislike")}
-            className="flex items-center gap-1 px-3 py-1 rounded-lg cursor-pointer border border-gray-500 hover:text-red-500 transition"
+            className="flex items-center gap-1 rounded-lg cursor-pointer hover:text-red-500 transition glass"
           >
             <span>{dislikes}</span>
             <FiThumbsDown className="w-5 h-5" />

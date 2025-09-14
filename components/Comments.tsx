@@ -52,11 +52,17 @@ export default function Comments({ slug, user }) {
       .map((r) => ({
         ...r,
         replies: (repliesMap[r.id] || []).sort(
-          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+          (a, b) =>
+            new Date(a.created_at).getTime() -
+            new Date(b.created_at).getTime()
         ),
       }));
 
-    roots.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    roots.sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() -
+        new Date(a.created_at).getTime()
+    );
     setComments(roots);
   };
 
@@ -211,8 +217,6 @@ export default function Comments({ slug, user }) {
 
         {comments.map((c) => (
           <div key={c.id} className="relative p-3 rounded-lg">
-            
-
             <div className="flex gap-3">
               <img
                 src={c.avatar_url}
@@ -250,13 +254,13 @@ export default function Comments({ slug, user }) {
                       <FiThumbsDown /> <span>{c.dislikes || 0}</span>
                     </span>
                     {user && user.id === c.user_id && (
-              <span
-                onClick={() => handleDelete(c.id)}
-                className="flex items-center gap-1 hover:text-red-500 transition cursor-pointer"
-              >
-                <FiTrash2 size={18} />
-              </span>
-            )}
+                      <span
+                        onClick={() => handleDelete(c.id)}
+                        className="flex items-center gap-1 hover:text-red-500 transition cursor-pointer"
+                      >
+                        <FiTrash2 size={18} />
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -275,7 +279,7 @@ export default function Comments({ slug, user }) {
                       className="flex items-center gap-1"
                     >
                       <span className="flex items-center gap-1 hover:text-gray-500 transition cursor-pointer text-sm text-gray-400">
-                      <FiChevronDown /> Reply
+                        <FiChevronDown /> Reply
                       </span>
                     </span>
                   </div>
@@ -329,14 +333,14 @@ export default function Comments({ slug, user }) {
                     >
                       {openReplies[c.id] ? (
                         <>
-                        <span className="flex items-center gap-1 hover:text-gray-500 transition cursor-pointer text-sm text-gray-400">
-                          <FiChevronUp /> Hide replies ({c.replies.length})
+                          <span className="flex items-center gap-1 hover:text-gray-500 transition cursor-pointer text-sm text-gray-400">
+                            <FiChevronUp /> Hide replies ({c.replies.length})
                           </span>
                         </>
                       ) : (
                         <>
-                        <span className="flex items-center gap-1 hover:text-gray-500 transition cursor-pointer text-sm text-gray-400">
-                          <FiChevronDown /> View replies ({c.replies.length})
+                          <span className="flex items-center gap-1 hover:text-gray-500 transition cursor-pointer text-sm text-gray-400">
+                            <FiChevronDown /> View replies ({c.replies.length})
                           </span>
                         </>
                       )}
