@@ -460,12 +460,15 @@ s
   border: 1.5px solid rgba(129, 120, 120, 0.486);
 }
 .glass{
-  background-color: rgba(224, 217, 217, 0.288);
-  padding: 2px 8px;
+  border: 1.5px solid rgba(129, 120, 120, 0.486) !important;
+  padding: 2px 8px !important;
 }
 .border-top{
   border-top: 1.5px solid rgba(129, 120, 120, 0.486);
 }
 .bordered{
   border: 1.5px solid rgba(129, 120, 120, 0.486);
+}
+.bg-remove:hover{
+  background-color: transparent !important;
 }

@@ -246,7 +246,7 @@ export default function Navbar() {
           </summary>
           <div className="pl-3 mt-1 space-y-1">
             <Link href="/settings" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">Settings</Link>
-            <Link href="/suggestions" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">My Feedbacks</Link>
+            <Link href="/activity" onClick={() => setIsOpen(false)} className="block hover:text-blue-500 py-1">My Activity</Link>
             <span
               onClick={handleLogout}
               className="py-1 text-red-600 flex items-center gap-1"
