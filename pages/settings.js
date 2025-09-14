@@ -185,7 +185,7 @@ export default function SettingsPage() {
             <select
               value={settings.theme}
               onChange={handleChange("theme")}
-              className="p-2 border rounded"
+              className="p-2 border rounded cursor-pointer"
             >
               <option value="light">Light</option>
               <option value="dark">Dark</option>
@@ -218,7 +218,7 @@ export default function SettingsPage() {
             <button
               onClick={handleSave}
               disabled={saving}
-              className={`px-4 py-2 rounded text-white ${
+              className={`px-4 py-2 rounded text-white cursor-pointer ${
                 saving ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
               }`}
             >
@@ -226,7 +226,7 @@ export default function SettingsPage() {
             </button>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 flex items-center gap-2"
+              className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 flex items-center gap-2 cursor-pointer"
             >
               <FiLogOut /> Logout
             </button>

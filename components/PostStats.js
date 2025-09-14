@@ -1,9 +1,8 @@
 // components/PostStats.js
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { supabase } from "../lib/supabaseClient";
-import likeIcon from "../images/like.png";
-import dislikeIcon from "../images/dislike.png";
+import { FiThumbsDown,
+  FiThumbsUp } from "react-icons/fi";
 
 export default function PostStats({ slug }) {
   const [views, setViews] = useState(0);
@@ -102,20 +101,22 @@ export default function PostStats({ slug }) {
       {/* Stats row */}
       <div className="flex sm:flex-row justify-between items-center text-sm">
         <div className="flex gap-4">
+          {/* Like */}
           <span
             onClick={() => handleVote("like")}
-            className="flex items-center gap-1 px-3 py-1 rounded-lg cursor-pointer bg-gray-700 border border-gray-500 text-gray-200 hover:bg-blue-700 transition"
+            className="flex items-center gap-1 px-3 py-1 rounded-lg cursor-pointer border border-gray-500 hover:text-blue-500 transition"
           >
             <span>{likes}</span>
-            <Image src={likeIcon} alt="Like" width={18} height={18} />
+            <FiThumbsUp className="w-5 h-5" />
           </span>
 
+          {/* Dislike */}
           <span
             onClick={() => handleVote("dislike")}
-            className="flex items-center gap-1 px-3 py-1 rounded-lg cursor-pointer bg-gray-700 border border-gray-500 text-gray-200 hover:bg-red-700 transition"
+            className="flex items-center gap-1 px-3 py-1 rounded-lg cursor-pointer border border-gray-500 hover:text-red-500 transition"
           >
             <span>{dislikes}</span>
-            <Image src={dislikeIcon} alt="Dislike" width={18} height={18} />
+            <FiThumbsDown className="w-5 h-5" />
           </span>
         </div>
       </div>

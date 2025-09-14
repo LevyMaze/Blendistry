@@ -50,7 +50,7 @@ function CodeBlock({ children, className = "" }) {
         className="absolute top-0 right-2 px-2 py-1 text-xs rounded-md 
                    bg-neutral-200 dark:bg-neutral-700 
                    text-neutral-700 dark:text-neutral-200 
-                   opacity-0 group-hover:opacity-100 transition"
+                   opacity-0 group-hover:opacity-100 transition cursor-pointer"
       >
         {copied ? "Copied!" : "Copy"}
       </button>

@@ -72,16 +72,16 @@ export default function FeedbackForm() {
 
   if (!user) {
     return (
-      <div className="feedback-container border border-gray-500 lg:mx-10 rounded">
+      <div className="feedback-container lg:mx-10 rounded">
         <p className="feedback-login-text">
           Please log in with GitHub to leave feedback.
         </p>
-        <button
+        <span
           onClick={() => supabase.auth.signInWithOAuth({ provider: "github" })}
-          className="flex align-center border border-gray-500"
+          className="flex align-center border border-gray-500 rounded p-2 cursor-pointer hover:text-gray-300 bg-gray-800 text-gray-200 transition"
         >
           <FaGithub className="btn-icon" /> Login with GitHub
-        </button>
+        </span>
       </div>
     );
   }
@@ -99,8 +99,13 @@ export default function FeedbackForm() {
           alt="avatar"
           className="feedback-avatar w-10 h-10 sm:w-12 sm:h-12 rounded-full border"
         />
-        <span className="feedback-username flex items-center gap-2 font-medium text-sm sm:text-base">
-          <FaGithub className="inline-icon" /> {user.user_metadata.user_name}
+        <span className="feedback-username flex items-center gap-1 font-medium text-sm sm:text-base">
+          <FaGithub size={20} /> <a
+                      href={`https://github.com/${user.user_metadata.user_name} `}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium hover:underline"
+                    >   {user.user_metadata.user_name} </a>
         </span>
       </div>
 
@@ -122,7 +127,7 @@ export default function FeedbackForm() {
         <button
           type="submit"
           disabled={loading}
-          className="feedback-btn submit-btn px-5 py-2 rounded-lg border font-medium text-sm sm:text-base hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+          className="feedback-btn submit-btn px-5 py-2 rounded-lg border font-medium text-sm sm:text-base hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 hover:text-gray-400 transition"
         >
           {loading ? "Submitting..." : "Submit"}
         </button>

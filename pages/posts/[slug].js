@@ -2,12 +2,14 @@
 import { getAllPosts, getPostBySlug } from "../../lib/posts";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import Giscus from "@giscus/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import CodeBlock from "../../components/CodeBlock";
 import PostStats from "../../components/PostStats";
+import Comments from "../../components/Comments";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabaseClient";
 
 const components = {
   h1: (props) => <h1 className="text-3xl font-bold mb-4" {...props} />,
@@ -16,13 +18,28 @@ const components = {
     props.className ? (
       <CodeBlock {...props} />
     ) : (
-      <code className="bg-neutral-200 dark:bg-neutral-700 px-1 py-0.5 rounded" {...props} />
+      <code
+        className="bg-neutral-200 dark:bg-neutral-700 px-1 py-0.5 rounded"
+        {...props}
+      />
     ),
 };
 
 export default function Post({ slug, frontmatter, mdxSource }) {
   const { theme } = useTheme();
   const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  // ✅ Get logged in user
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+  }, []);
 
   return (
     <div className="min-h-screen px-0 sm:px-6 lg:px-8 py-6">
@@ -33,7 +50,7 @@ export default function Post({ slug, frontmatter, mdxSource }) {
             onClick={() => router.back()}
             className="group flex items-center px-3 py-1 rounded-lg cursor-pointer select-none w-max text-blue-600 dark:text-blue-400 transition transform duration-200 ease-in-out"
           >
-            <span className="text-xl font-bold transform transition-transform duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500">
+            <span className="text-m font-bold transform transition-transform duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-800 dark:group-hover:text-blue-500">
               く Back
             </span>
           </p>
@@ -44,7 +61,7 @@ export default function Post({ slug, frontmatter, mdxSource }) {
           </h1>
 
           {/* Author, date, stats */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 text-neutral-600 dark:text-neutral-400 text-sm mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 text-sm mb-6">
             <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-0">
               <span>Author: {frontmatter.author || "Unknown"}</span>
               <span>Date: {frontmatter.date}</span>
@@ -76,26 +93,7 @@ export default function Post({ slug, frontmatter, mdxSource }) {
 
       {/* Comments */}
       <div className="mt-10 w-full sm:max-w-3xl sm:mx-auto space-y-3">
-        {/* Info about Giscus login */}
-        <div className="p-3 rounded bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-100 text-sm">
-          Note: Signing in is required to comment via GitHub. This is separate from signing in to Blendistry for settings and feedback.
-        </div>
-
-
-        <Giscus
-          id="comments"
-          repo="LevyMaze/Blendistry"
-          repoId="R_kgDOPhxMbA"
-          category="General"
-          categoryId="DIC_kwDOPhxMbM4CubFF"
-          mapping="pathname"
-          reactionsEnabled="1"
-          emitMetadata="0"
-          inputPosition="bottom"
-          theme={theme === "dark" ? "dark_dimmed" : "light"}
-          lang="en"
-          loading="lazy"
-        />
+        <Comments slug={slug} user={user} />
       </div>
     </div>
   );

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, Github, ChevronDown, LogOut, Settings } from "lucide-react";
+import { Menu, X, Sun, Moon, Github, ChevronDown, LogOut, Settings, Activity } from "lucide-react";
+
 import { supabase } from "../lib/supabaseClient";
 
 export default function Navbar() {
@@ -153,11 +154,12 @@ export default function Navbar() {
                       <Settings size={14} /> Settings
                     </Link>
                     <Link
-                      href="/suggestions"
-                      className="block px-3 py-1 hover:text-blue-500 transition"
+                      href="/activity"
+                      className="block px-3 py-1 hover:text-blue-500 flex items-center gap-1 transition"
                       onClick={() => setProfileOpen(false)}
                     >
-                      My Feedbacks
+                      <Activity size={14} /> 
+                      My Activity
                     </Link>
                     <span
                       onClick={handleLogout}
@@ -176,9 +178,9 @@ export default function Navbar() {
             whileTap={{ scale: 0.9 }}
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="toggle theme"
-            className="p-1 rounded"
+            className="p-1 px-2 rounded cursor-pointer transition"           
           >
-            {mounted ? (theme === "dark" ? <Moon size={18} /> : <Sun size={18} />) : "..."}
+            {mounted ? (theme === "dark" ? <Moon size={20} /> : <Sun size={20} />) : "..."}
           </motion.button>
 
         </div>
@@ -186,7 +188,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-1 rounded text-neutral-800 dark:text-neutral-200 focus:outline-none"
+          className="md:hidden rounded text-neutral-800 dark:text-neutral-200 focus:outline-none px-2 p-1"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -207,7 +209,7 @@ export default function Navbar() {
       <Link href="/feedback" onClick={() => setIsOpen(false)} className="block hover:text-blue-500">Feedback</Link>
 
       <details className="group">
-        <summary className="cursor-pointer py-1 group-open:text-blue-500 border border-gray-500 dark:border-gray-500 mr-55 rounded py-2 p-1">Categories</summary>
+        <summary className="cursor-pointer group-open:text-gray-500 group-open: mr-55 rounded p-1 px-2 transition">Categories</summary>
         <div className="pl-3 mt-1 space-y-1">
           {categories.map((cat) => (
             <Link
@@ -222,16 +224,7 @@ export default function Navbar() {
         </div>
       </details>
 
-      {/* Theme toggle */}
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setIsOpen(false); }}
-        aria-label="toggle theme"
-        className="flex items-center gap-2 py-1"
-      >
-        {mounted ? theme === "dark" ? <Moon size={16} /> : <Sun size={16} /> : "..."}
-        <span>{theme === "dark" ? "Dark" : "Light"}</span>
-      </motion.button>
+      
 
       {/* Profile Dropdown */}
       {!user ? (
@@ -263,7 +256,16 @@ export default function Navbar() {
           </div>
         </details>
       )}
-      
+      {/* Theme toggle */}
+      <motion.button
+        whileTap={{ scale: 0.9 }}
+        onClick={() => { setTheme(theme === "dark" ? "light" : "dark"); setIsOpen(false); }}
+        aria-label="toggle theme"
+        className="flex items-center gap-2 p-1 rounded px-2"
+      >
+        {mounted ? theme === "dark" ? <Moon size={16} /> : <Sun size={16} /> : "..."}
+        <span>{theme === "dark" ? "Dark" : "Light"}</span>
+      </motion.button>
     </motion.div>
   )}
 </AnimatePresence>
