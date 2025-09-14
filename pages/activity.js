@@ -97,19 +97,23 @@ export default function MyActivity() {
   {/* Feedbacks */}
   <div className="w-full">
     <h2 className="text-xl font-semibold mb-4">My Feedbacks</h2>
-    <p className="text-sm text-amber-600 dark:text-amber-400 mb-3">
-      Feedbacks cannot be deleted.
-    </p>
     {suggestions.length === 0 ? (
       <p className="text-gray-600 dark:text-gray-300">
         You haven't submitted any feedbacks yet.
       </p>
     ) : (
+      
       <ul className="space-y-4">
+        <span className="text-sm text-amber-600 dark:text-amber-400 mb-3 border border-yellow-500 rounded p-1 mb-10">
+      Feedbacks cannot be deleted.
+    </span>
+    <br/>
+    <br/>
         {suggestions.map((s) => (
+          
           <li
             key={s.id}
-            className="p-5 border rounded-xl shadow-sm transition hover:shadow-md bg-white dark:bg-zinc-900"
+            className="p-5 border rounded-xl shadow-sm transition hover:shadow-md bordered"
           >
             <div className="flex items-center gap-3 mb-3">
               {s.avatar_url && (
@@ -149,7 +153,7 @@ export default function MyActivity() {
         {comments.map((c) => (
           <li
             key={c.id}
-            className="p-5 border rounded-xl shadow-sm transition hover:shadow-md bg-white dark:bg-zinc-900 relative"
+            className="p-5 border bordered rounded-xl shadow-sm transition hover:shadow-md relative"
           >
             <div className="flex items-center gap-3 mb-3">
               {c.avatar_url && (
@@ -189,14 +193,14 @@ export default function MyActivity() {
               </span>
             </Link>
 
-            <button
+            <span
               onClick={() => handleDeleteComment(c.id)}
               disabled={deleting === c.id}
-              className="absolute top-4 right-4 flex items-center gap-1 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 text-sm"
+              className="absolute top-4 right-4 flex items-center gap-1 text-sm p-1 px-2 rounded cursor-pointer text-red-700 hover:text-red-800 dark:text-red-500 dark:hover:text-red-300 border border-red-500 transition"
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 className="w-4 h-4 cursor-pointer " />
               {deleting === c.id ? "Deleting..." : "Delete"}
-            </button>
+            </span>
           </li>
         ))}
       </ul>

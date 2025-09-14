@@ -224,7 +224,7 @@ export default function Comments({ slug, user }) {
                 className="w-10 h-10 rounded-full border flex-shrink-0"
               />
               <div className="flex-1 min-w-0">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-top">
                   <div>
                     <a
                       href={`https://github.com/${c.username}`}
@@ -351,7 +351,7 @@ export default function Comments({ slug, user }) {
                         {c.replies.map((r) => (
                           <div
                             key={r.id}
-                            className="p-2 border rounded-lg flex gap-2 items-start"
+                            className="p-2 rounded flex gap-2 items-start"
                           >
                             <img
                               src={r.avatar_url}
