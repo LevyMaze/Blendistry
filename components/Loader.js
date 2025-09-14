@@ -8,7 +8,7 @@ export default function Loader() {
         {/* Pulsing "Loading" text synced with dots */}
         <motion.span
           className="text-blue-700 dark:text-blue-300"
-          animate={{ opacity: [0.8, 2, 0.8] }}
+          animate={{ opacity: [0.35, 1, 0.35] }}
           transition={{
             duration: 0.9,
             repeat: Infinity,

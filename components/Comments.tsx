@@ -157,22 +157,22 @@ export default function Comments({ slug, user }) {
       });
       fetchComments();
       showNotice(
-        type === "like" ? "You liked this." : "You disliked this.",
+        type === "like" ? "liked" : "disliked",
         "success"
       );
       return;
     }
-    showNotice("You have already voted on this comment.", "error");
+    showNotice("You already voted!", "error");
   };
 
   return (
     <div className="mt-6 border-t pt-4">
       {notice && (
         <div
-          className={`fixed right-4 bottom-6 z-50 px-4 py-2 rounded-lg border ${
+          className={`fixed right-4 top-20 z-50 px-4 py-2 rounded-lg border ${
             notice.type === "error"
-              ? "border-red-600 text-red-600 bg-white/90 dark:bg-black/80"
-              : "border-green-600 text-green-600 bg-white/90 dark:bg-black/80"
+              ? "border-red-600 text-red-600"
+              : "border-green-600 text-green-600"
           }`}
         >
           {notice.msg}
@@ -242,21 +242,21 @@ export default function Comments({ slug, user }) {
                   <div className="flex items-center gap-3">
                     <span
                       onClick={() => handleVote(c.id, "like")}
-                      className="flex items-center gap-1 hover:text-gray-400 transition cursor-pointer"
+                      className="flex items-center text-neutral-500 gap-1 hover:text-gray-400 transition cursor-pointer"
                     >
                       <FiThumbsUp /> <span>{c.likes || 0}</span>
                     </span>
 
                     <span
                       onClick={() => handleVote(c.id, "dislike")}
-                      className="flex items-center gap-1 hover:text-gray-400 transition cursor-pointer"
+                      className="flex items-center gap-1 text-neutral-500 hover:text-gray-400 transition cursor-pointer"
                     >
                       <FiThumbsDown /> <span>{c.dislikes || 0}</span>
                     </span>
                     {user && user.id === c.user_id && (
                       <span
                         onClick={() => handleDelete(c.id)}
-                        className="flex items-center gap-1 hover:text-red-500 transition cursor-pointer"
+                        className="flex items-center gap-1 text-neutral-500 hover:text-red-500 transition cursor-pointer"
                       >
                         <FiTrash2 size={18} />
                       </span>
@@ -347,12 +347,12 @@ export default function Comments({ slug, user }) {
                     </span>
 
                     {openReplies[c.id] && (
-                      <div className="mt-2 space-y-2">
+                      <div className="mt-2 space-y-2 border-top">
                         {c.replies.map((r) => (
                           <div
                             key={r.id}
-                            className="p-2 rounded flex gap-2 items-start"
-                          >
+                            className="p-2 rounded flex gap-2 items-start">
+                          
                             <img
                               src={r.avatar_url}
                               alt={r.username}
@@ -376,12 +376,12 @@ export default function Comments({ slug, user }) {
                             </div>
 
                             {user && user.id === r.user_id && (
-                              <button
+                              <span
                                 onClick={() => handleDelete(r.id)}
-                                className="p-1 rounded text-neutral-500 hover:text-white hover:bg-red-600"
+                                className="p-1 rounded text-neutral-500 hover:text-red-500 transition cursor-pointer"
                               >
-                                <FiTrash2 size={14} />
-                              </button>
+                                <FiTrash2 size={16} />
+                              </span>
                             )}
                           </div>
                         ))}

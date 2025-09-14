@@ -166,12 +166,18 @@ export default function SettingsPage() {
           className="w-16 h-16 rounded-full"
         />
         <div>
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
             <span className="text-sm text-gray-500">Logged in as</span> <br/>{user.user_metadata?.user_name || "User"}
           </h2>
           <p className="text-sm text-gray-500">
             ID: <span className="font-mono">{user.id}</span>
           </p>
+          <a
+                      href={`https://github.com/${user.user_metadata.user_name} `}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs hover:underline"
+                    >   https://github.com/{user.user_metadata.user_name} </a>
         </div>
       </div>
 
@@ -194,7 +200,7 @@ export default function SettingsPage() {
           </label>
 
           {/* Remember Theme */}
-          <label className="flex items-center gap-2">
+          <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
               checked={settings.saveTheme}
@@ -204,7 +210,7 @@ export default function SettingsPage() {
           </label>
 
           {/* Cookies */}
-          <label className="flex items-center gap-2">
+          <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
               checked={settings.cookieConsent}
@@ -215,21 +221,21 @@ export default function SettingsPage() {
 
           {/* Buttons */}
           <div className="flex gap-3 pt-3">
-            <button
+            <span
               onClick={handleSave}
               disabled={saving}
-              className={`px-4 py-2 rounded text-white cursor-pointer ${
-                saving ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+              className={`px-4 py-2 rounded text-blue-200 border border-blue-600 cursor-pointer transition ${
+                saving ? "bg-blue-400 text-blue-300" : "bg-blue-600 hover:bg-blue-700"
               }`}
             >
               {saving ? "Saving…" : "Save"}
-            </button>
-            <button
+            </span>
+            <span
               onClick={handleLogout}
-              className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2 rounded bg-red-600 text-red-200 border-red-600 hover:bg-red-700 transition flex items-center gap-2 cursor-pointer"
             >
               <FiLogOut /> Logout
-            </button>
+            </span>
           </div>
         </div>
 
