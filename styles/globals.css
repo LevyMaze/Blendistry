@@ -472,3 +472,6 @@ s
 .bg-remove:hover{
   background-color: transparent !important;
 }
+.border-bottom{
+  border-bottom: 1.5px solid rgba(129, 120, 120, 0.486);
+}

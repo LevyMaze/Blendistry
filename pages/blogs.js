@@ -37,7 +37,7 @@ export default function Blogs({ posts }) {
             <BlogCard key={post.slug} post={post} index={i}/>
           ))
         ) : (
-          <p className="text-center text-neutral-500 dark:text-neutral-400">No posts found.</p>
+          <p className="text-center text-yellow-600">No posts found.</p>
         )}
       </div>
     </div>

@@ -84,7 +84,7 @@ export default function Home({ posts }) {
       {/* ------------------ Posts List ------------------ */}
       <div className="flex flex-col gap-5 sm:gap-7">
         {latestPosts.length === 0 ? (
-          <div className="p-4 rounded-md border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+          <div className="text-m text-center text-yellow-600">
             No posts match your search.
           </div>
         ) : (
