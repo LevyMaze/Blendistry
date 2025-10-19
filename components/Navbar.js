@@ -81,8 +81,7 @@ export default function Navbar() {
           <Link href="/" className="hover:text-blue-500 transition">Home</Link>
           <Link href="/blogs" className="hover:text-blue-500 transition">Blogs</Link>
           <Link href="/about" className="hover:text-blue-500 transition">About</Link>
-          <Link href="/feedback" className="hover:text-blue-500 transition">Feedback</Link>
-          <Link href="/add-postblog" className="hover:text-blue-500 transition">Post Blog</Link>
+          <Link href="/feedback" className="hover:text-blue-500 transition">Feedback</Link>          
 
           {/* Categories */}
           <div className="relative" ref={categoryRef}>

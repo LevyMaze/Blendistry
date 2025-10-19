@@ -23,7 +23,7 @@ export default function MyActivity() {
       setUser(user);
 
       if (user) {
-        // ✅ fetch feedbacks
+        // ✅ feedbacks
         const { data: feedbacks } = await supabase
           .from("feedbacks")
           .select("id, feedback, created_at, username, avatar_url")
@@ -32,7 +32,7 @@ export default function MyActivity() {
 
         setSuggestions(feedbacks || []);
 
-        // ✅ fetch comments & replies
+        // ✅ comments
         const { data: userComments } = await supabase
           .from("comments")
           .select(
@@ -41,34 +41,9 @@ export default function MyActivity() {
           .eq("user_id", user.id)
           .order("created_at", { ascending: false });
 
-        if (userComments) {
-          setComments(userComments);
-        }
+        if (userComments) setComments(userComments);
 
-        // ✅ fetch blog post statuses
-        const notificationsArr = [];
-
-        // Pending
-        const { data: pending } = await supabase
-          .from("pending_posts")
-          .select("id, title")
-          .eq("author", user.user_metadata?.user_name || "Anonymous");
-
-        pending?.forEach((p) =>
-          notificationsArr.push({ status: "pending", title: p.title })
-        );
-
-        // Rejected
-        const { data: rejected } = await supabase
-          .from("rejected_posts")
-          .select("id, title")
-          .eq("author", user.user_metadata?.user_name || "Anonymous");
-
-        rejected?.forEach((p) =>
-          notificationsArr.push({ status: "rejected", title: p.title })
-        );
-
-        setNotifications(notificationsArr);
+        
       }
 
       setLoading(false);
@@ -77,7 +52,7 @@ export default function MyActivity() {
     fetchUserData();
   }, []);
 
-  // ✅ delete comment logic
+  // ✅ delete comment
   const handleDeleteComment = async (id) => {
     setDeleting(id);
     const { error } = await supabase.from("comments").delete().eq("id", id);
@@ -89,14 +64,12 @@ export default function MyActivity() {
     setDeleting(null);
   };
 
-  // ✅ dismiss notification logic
+  // ✅ dismiss notification
   const handleDismissNotification = (idx) => {
     setNotifications((prev) => prev.filter((_, i) => i !== idx));
   };
 
-  if (loading) {
-    return <Loader />;
-  }
+  if (loading) return <Loader />;
 
   if (!user) {
     return (
@@ -129,7 +102,9 @@ export default function MyActivity() {
             >
               <div className="flex items-center gap-3">
                 {n.status === "pending" && <Clock className="w-5 h-5" />}
-                {n.status === "accepted" && <CheckCircle className="w-5 h-5" />}
+                {n.status === "accepted" && (
+                  <CheckCircle className="w-5 h-5" />
+                )}
                 {n.status === "rejected" && <XCircle className="w-5 h-5" />}
                 <span className="text-sm">
                   <strong>{n.title}</strong> —{" "}
@@ -141,7 +116,7 @@ export default function MyActivity() {
                 </span>
               </div>
 
-              {/* ✅ dismiss button */}
+              {/* dismiss button */}
               <span
                 onClick={() => handleDismissNotification(idx)}
                 className="ml-4 bg-red-400 cursor-pointer text-white p-1 px-2 transition rounded"
@@ -164,7 +139,7 @@ export default function MyActivity() {
             </p>
           ) : (
             <ul className="space-y-4">
-              <span className="text-sm text-amber-600 dark:text-amber-400 mb-3 border border-yellow-500 rounded p-1 mb-10">
+              <span className="text-sm text-amber-600 dark:text-amber-400 mb-3 border border-yellow-500 rounded-xl p-1 mb-10">
                 Feedbacks cannot be deleted.
               </span>
               <br />
